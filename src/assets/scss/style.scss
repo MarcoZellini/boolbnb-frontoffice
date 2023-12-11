@@ -31,6 +31,10 @@ body {
     flex: 1;
 }
 
+.bnb-shadow {
+    box-shadow: 0px 1px 5px $bnb-secondary;
+}
+
 /*#endregion GLOBAL RULES*/
 
 /*#region SCROLLBAR*/
@@ -285,6 +289,20 @@ output {
 // DATE INPUT
 .date-bnb {
     border-bottom: 1px solid #b0b0b0a4;
+}
+
+// SEARCHBAR
+input[type="search"] {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="black" stroke-width="2"><circle cx="7" cy="7" r="6" /><path d="M11 11 L15 15" /></svg>');
+    background-size: 0.7em;
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
 }
 
 /*#endregion FORMS*/
