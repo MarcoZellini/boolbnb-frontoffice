@@ -1,6 +1,68 @@
 <script>
+import Navbar from './assets/components/Navbar.vue'
+
+import Footer from './assets/components/Footer.vue'
+
+import { store } from './store'
+
+export default {
+    name: "App",
+
+    components: {
+
+        Navbar,
+        Footer,
+
+    },
+
+    data() {
+
+        return {
+
+            store,
+
+        }
+
+    },
+
+    methods: {
+
+        // TRASFORMA IL PERCORSO DELL'IMMAGINE LOCALE IN UN URL
+        getPlaceholderImg(url) {
+            return new URL(`${url}`, import.meta.url).href
+        },
+
+    },
+
+    mounted() {
+
+    },
+
+}
+
 </script>
 
-<template></template>
+<template>
+    <header>
+        <Navbar />
+    </header>
 
-<style></style>
+    <main>
+
+        APP.VUE
+
+        <!-- VIEW -->
+        <router-view></router-view>
+
+    </main>
+
+    <footer>
+
+        <Footer />
+
+    </footer>
+</template>
+
+<style lang="scss">
+@use './assets/scss/partials/variables.scss' as *;
+</style>

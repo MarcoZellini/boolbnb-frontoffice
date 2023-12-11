@@ -1,0 +1,335 @@
+@use 'bootstrap';
+
+@use './partials/variables.scss' as *;
+
+/*#region Utilities*/
+.bnb-color {
+    color: $bnb-primary ;
+}
+
+
+/*#endregion Utilities*/
+
+/*#region GLOBAL RULES*/
+body {
+    font-family: 'Mulish', sans-serif;
+}
+
+/*#endregion GLOBAL RULES*/
+
+/*#region ANCHOR TAGS AND BTNS*/
+a {
+    text-decoration: none;
+    color: $bnb-dark;
+}
+
+// FOCUSABLE ANCHOR TAGS
+.focusable-bnb {
+    &:hover {
+        color: $bnb-accent;
+    }
+}
+
+.btn-bnb {
+
+    background-color: $bnb-primary;
+    color: $bnb-light;
+
+    &:hover {
+        background-color: $bnb-accent;
+        color: $bnb-light;
+        box-shadow: 0px 1px 5px $bnb-secondary;
+    }
+
+    &:active {
+        background-color: $bnb-accent !important;
+        color: $bnb-light !important;
+        box-shadow: 0px 1px 5px $bnb-secondary;
+    }
+}
+
+.btn-bnb-secondary {
+    background-color: $bnb-light;
+    color: $bnb-medium;
+
+    &:hover {
+        background-color: $bnb-secondary;
+        border-color: $bnb-secondary !important;
+        color: $bnb-light;
+        box-shadow: 0px 1px 5px $bnb-secondary;
+    }
+
+    &:active {
+        background-color: $bnb-secondary !important;
+        border-color: $bnb-secondary !important;
+        color: $bnb-light !important;
+        box-shadow: 0px 1px 5px $bnb-secondary;
+    }
+}
+
+.bnb-btn-shadow {
+    &:hover {
+        box-shadow: 0px 1px 5px $bnb-secondary;
+    }
+
+    &:active {
+        box-shadow: 0px 1px 5px $bnb-secondary;
+    }
+}
+
+/*#endregion ANCHOR TAGS AND BTNS*/
+
+/*#region FORMS*/
+// CHECKBOXES STYLE
+.form-check-input {
+    box-shadow: none !important;
+    border: 1px solid $bnb-primary !important;
+
+    &:checked {
+        border: 1px solid $bnb-dark !important;
+        background-color: $bnb-primary !important;
+    }
+}
+
+.custom-file-input {
+    color: $bnb-medium;
+
+    &::-webkit-file-upload-button {
+        visibility: hidden;
+    }
+
+    &::before {
+        content: 'Scegli file';
+        background: $bnb-primary;
+        color: $bnb-light;
+        border: 1px solid $bnb-primary;
+        border-radius: 50rem;
+        padding: 3px 6px;
+        outline: none;
+        white-space: nowrap;
+        cursor: pointer;
+
+    }
+
+    &:hover::before {
+        background: $bnb-accent;
+        border-color: $bnb-accent;
+    }
+
+    &:active::before {
+        background: $bnb-accent;
+        border-color: $bnb-accent;
+    }
+
+}
+
+/*#region services*/
+/* .services {
+    position: relative;
+    width: 120%;
+    height: 150%;
+    opacity: 0.3;
+    z-index: 2;
+
+
+    &:checked {
+        --bs-form-check-bg-image: none !important;
+        opacity: 0.5;
+        background-color: $bnb-accent !important;
+        color: $bnb-light !important;
+        box-shadow: 0px 1px 5px $bnb-secondary;
+
+        .services {
+            column-rule-color: #fff;
+        }
+
+    }
+
+    &:hover {
+        box-shadow: 0px 1px 5px $bnb-secondary !important;
+    }
+}
+
+.services_icons {
+    position: absolute;
+    top: 90%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+ */
+/*#endregion services*/
+
+// FORM FIELDS STYLE
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border-bottom: 2px solid $bnb-secondary;
+    -webkit-text-fill-color: $bnb-medium;
+    transition: background-color 5000s ease-in-out 0s;
+    font-size: 1rem;
+}
+
+.form-floating {
+    label {
+        padding: 1rem 0;
+    }
+}
+
+.form-control {
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid $bnb-secondary ;
+
+    &:focus {
+        box-shadow: none;
+        border-bottom: 2px solid $bnb-primary;
+        border-image: linear-gradient(to right, $bnb-accent, #fff);
+        border-image-slice: 1;
+    }
+
+    &:focus~label {
+        color: $bnb-primary !important;
+    }
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background-color: $bnb-secondary;
+    opacity: 0.6;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &::-webkit-slider-thumb {
+        border-radius: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: $bnb-primary;
+        cursor: pointer;
+        filter: drop-shadow(none);
+
+        &:hover {
+            background: $bnb-accent;
+            filter: drop-shadow(0px 0px 2px $bnb-accent);
+        }
+
+    }
+}
+
+output {
+    color: $bnb-accent;
+}
+
+// FORM ERROR MESSAGE STYLE
+.form-error {
+    color: $bnb-accent;
+    font-weight: 300;
+    font-size: 0.75rem;
+}
+
+// DATE INPUT
+.date-bnb {
+    border-bottom: 1px solid #b0b0b0a4;
+}
+
+/*#endregion FORMS*/
+
+/*#region MEDIA QUERIES*/
+
+/* BS MEDIA QUERIES BREACKPOINTS
+Small	sm	≥576px
+Medium	md	≥768px
+Large	lg	≥992px
+Extra large	xl	≥1200px
+Extra extra large	xxl	≥1400px 
+*/
+
+@media screen and (max-width: 425px) {
+
+    .bnb-service-col {
+        width: 100% !important;
+    }
+
+}
+
+@media screen and (max-width: 575.97px) {
+
+    .bnb-main-img,
+    .bnb-extra-img {
+        max-height: 250px;
+        border-radius: 0.375rem !important;
+    }
+
+}
+
+@media screen and (min-width: 575.98px) {
+
+    .bnb-main-img,
+    .bnb-extra-img {
+        max-height: 200px;
+    }
+
+    .bnb-mid-img {
+        border-radius: 0px !important;
+    }
+
+    .bnb-tr-img {
+        border-radius: 0px !important;
+        border-top-right-radius: 0.375rem !important;
+    }
+
+    .bnb-br-img {
+        border-radius: 0px !important;
+        border-bottom-right-radius: 0.375rem !important;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+    .bnb-main-img,
+    .bnb-extra-img {
+        max-height: 250px;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+
+    .bnb-main-img,
+    .bnb-extra-img {
+        max-height: 345px;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+    .bnb-main-img,
+    .bnb-extra-img {
+        max-height: 400px;
+    }
+
+}
+
+@media screen and (min-width: 1400px) {
+    .bnb-main-img {
+        height: 450px;
+    }
+
+}
+
+/*#endregion MEDIA QUERIES*/
