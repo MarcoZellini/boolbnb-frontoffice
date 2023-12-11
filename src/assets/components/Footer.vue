@@ -25,13 +25,104 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row h-100">
-            <div class="col h-100">
-                <h1 class="">FOOTER</h1>
+    <footer class="">
+        <div class="container">
+            <div class="row h-100 py-4">
+                <div class="col-3 h-100">
+                    <h5 class="mb-0">Lasciati Ispirare</h5>
+                    <p class="text-muted mb-1">Le mete di tendenza:</p>
+                    <!-- PLACEHOLDERS -->
+                    <li class="list-unstyled">
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Bolzano</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Palermo</a>
+                        </ul>
+
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Pesaro</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Venezia</a>
+                        </ul>
+                    </li>
+                </div>
+
+                <div class="col-3 h-100">
+                    <h5 class="mb-0">Lasciati Ispirare</h5>
+                    <p class="text-muted mb-1">Le mete di tendenza:</p>
+                    <!-- PLACEHOLDERS -->
+                    <li class="list-unstyled">
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Bolzano</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Palermo</a>
+                        </ul>
+
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Pesaro</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Venezia</a>
+                        </ul>
+                    </li>
+                </div>
+
+                <div class="col-3 h-100">
+                    <h5 class="mb-0">Lasciati Ispirare</h5>
+                    <p class="text-muted mb-1">Le mete di tendenza:</p>
+                    <!-- PLACEHOLDERS -->
+                    <li class="list-unstyled">
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Bolzano</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Palermo</a>
+                        </ul>
+
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Pesaro</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Venezia</a>
+                        </ul>
+                    </li>
+                </div>
+
+                <div class="col-3 h-100">
+                    <h5 class="mb-0">Lasciati Ispirare</h5>
+                    <p class="text-muted mb-1">Le mete di tendenza:</p>
+                    <!-- PLACEHOLDERS -->
+                    <li class="list-unstyled">
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Bolzano</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Palermo</a>
+                        </ul>
+
+                        <ul class="p-0">
+                            <a href="#" class="ms-1 focusable-bnb">Pesaro</a>
+                        </ul>
+
+                        <ul class="p-0 ">
+                            <a href="#" class="ms-1 focusable-bnb">Venezia</a>
+                        </ul>
+                    </li>
+                </div>
+
             </div>
         </div>
-    </div>
+    </footer>
 </template>
 
 <style lang="scss" scoped>

@@ -43,24 +43,18 @@ export default {
 </script>
 
 <template>
-    <header>
+    <header class="mb-3">
         <Navbar />
     </header>
 
-    <main>
-
-        APP.VUE
+    <main class="main-container">
 
         <!-- VIEW -->
         <router-view></router-view>
 
     </main>
 
-    <footer>
-
-        <Footer />
-
-    </footer>
+    <Footer />
 </template>
 
 <style lang="scss">
