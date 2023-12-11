@@ -3,7 +3,18 @@
 /*#region FOOTER*/
 
 footer {
-    box-shadow: 0px -4px 15px rgba(176, 176, 176, 0.6431372549);
+    box-shadow: -1px 0px 15px rgba(176, 176, 176, 0.6431372549);
+
+}
+
+@media screen and (max-width: 768px) {
+
+    p,
+    li,
+    a {
+        font-size: 0.8rem;
+    }
+
 }
 
 /*#endregion FOOTER*/

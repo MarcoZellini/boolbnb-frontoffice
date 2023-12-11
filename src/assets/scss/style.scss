@@ -7,7 +7,6 @@
     color: $bnb-primary ;
 }
 
-
 /*#endregion Utilities*/
 
 /*#region GLOBAL RULES*/
@@ -26,13 +25,10 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    // overflow-y: hidden;
-
 }
 
 .main-container {
     flex: 1;
-    overflow-y: scroll;
 }
 
 /*#endregion GLOBAL RULES*/
