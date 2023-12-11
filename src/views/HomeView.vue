@@ -3,12 +3,14 @@
 import { store } from '../store'
 
 import ApartmentCard from "../assets/components/ApartmentCard.vue"
+import Jumbotron from "../assets/components/Jumbotron.vue"
 
 export default {
     name: 'HomeView',
 
     components: {
         ApartmentCard,
+        Jumbotron,
     },
 
     data() {
@@ -41,6 +43,9 @@ export default {
 
 <template>
     <section id="home">
+
+        <!-- JUMBOTRON & SEARCH INPUT -->
+        <Jumbotron />
 
         <div class="container">
 
