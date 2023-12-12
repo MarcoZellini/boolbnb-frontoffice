@@ -7,7 +7,6 @@ import ApartmentCard from '../assets/components/ApartmentCard.vue';
 
 export default {
     name: 'SearchView',
-
     components: {
         ApartmentCard,
     },
@@ -16,28 +15,29 @@ export default {
         return {
             store,
         }
-
     },
     methods: {
-        test() {
-            if (!store.apartsPositionJson) {
-                store.getApartsPosition();
-            }
-        }
 
     },
     mounted() {
-        this.test();
-        store.filterApartmentsByRadius();
-
+        store.getApartments();
     }
-
 }
 
 </script>
 
 <template>
     <div class="container">
+
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-8 py-4">
+                <input type="search" @keydown.enter="store.filterApartments()" v-model="store.inputAddress"
+                    placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow">
+            </div>
+
+        </div>
+
         <form action="" @keydown.enter="store.filterApartmentsByRadius()">
 
             <div class="row">
@@ -90,13 +90,6 @@ export default {
         </form>
 
         <hr>
-
-
-        <h6>DEBUG OUTPUT RICERCA</h6>
-        <div class="py-2">
-            {{ store.geometry }} <br>
-            ID Appartamenti filtrati: {{ store.searchIDs }}
-        </div>
 
         <!-- CARD -->
         <div class="container">
