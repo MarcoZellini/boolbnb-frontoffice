@@ -15,7 +15,12 @@ const routes = [
         name: 'search',
         component: SearchView
     },
-
+    /* {
+        path: '/apartment/:slug',
+        name: 'apartment',
+        component: SingleApartmentView,
+    }, */
+    
 ];
 
 // router E' UNA ISTANZA di createRouter() CHE USA LE ROTTE DICHIARATE NELLA const routes
