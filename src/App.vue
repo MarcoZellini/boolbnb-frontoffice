@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <header class="mb-3">
+    <header>
         <Navbar />
     </header>
 
