@@ -55,8 +55,13 @@ export default {
                 <!-- Right Side Of Navbar -->
 
                 <div class="d-flex align-items-center ms-auto">
+
                     <router-link class="nav-link nav-link-bnb" to="/">Home</router-link>
+
+                    <router-link class="nav-link nav-link-bnb" to="search">Ricerca Avanzata</router-link>
+
                     <a class="nav-link nav-link-bnb" href="http://127.0.0.1:8000/">Vai alla Dashboard</a>
+
                 </div>
 
             </div>
