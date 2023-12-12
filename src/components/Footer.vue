@@ -1,12 +1,20 @@
 <script >
 
+import { store } from '../store.js'
+
 export default {
     name: 'Footer',
 
     data() {
 
         return {
-
+            store,
+            citiesArray: [
+                'Bolzano',
+                'Palermo',
+                'Pesaro',
+                'Padova',
+            ]
         }
 
     },
@@ -17,6 +25,12 @@ export default {
         getPlaceholderImg(url) {
             return new URL(`${url}`, import.meta.url).href
         },
+
+        citiesSearch(city) {
+            store.inputAddress = city;
+            store.filterApartments();
+            this.$router.push('search')
+        }
 
     },
 
@@ -36,20 +50,8 @@ export default {
                     <!-- PLACEHOLDERS -->
                     <ul class="list-unstyled d-flex flex-row flex-wrap flex-lg-nowrap flex-lg-column">
 
-                        <li class="p-0">
-                            <a href="#" class="ms-1 focusable-bnb">Bolzano</a>
-                        </li>
-
-                        <li class="p-0 ">
-                            <a href="#" class="ms-1 focusable-bnb">Palermo</a>
-                        </li>
-
-                        <li class="p-0">
-                            <a href="#" class="ms-1 focusable-bnb">Pesaro</a>
-                        </li>
-
-                        <li class="p-0 ">
-                            <a href="#" class="ms-1 focusable-bnb">Venezia</a>
+                        <li class="p-0" v-for="city in this.citiesArray" @click="citiesSearch(city)">
+                            <a href="javascript:void(0)" class="ms-1 focusable-bnb">{{ city }}</a>
                         </li>
 
                     </ul>
