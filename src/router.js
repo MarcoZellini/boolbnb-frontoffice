@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
 import HomeView from './views/HomeView.vue';
+import SingleApartments from './views/SingleApartments.vue'
 
 const routes = [
 
@@ -8,6 +9,11 @@ const routes = [
         path: '/',
         name: 'home',
         component: HomeView
+    },
+    {
+        path: '/apartment/:id',
+        name: 'apartment',
+        component: SingleApartments
     },
 
 ];
