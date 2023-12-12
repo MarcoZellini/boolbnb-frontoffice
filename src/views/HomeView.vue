@@ -1,15 +1,16 @@
 <script >
 
+import { store } from '../store.js'
+
 export default {
     name: 'HomeView',
 
     data() {
         return {
-
+            store
         }
 
     },
-
     methods: {
 
         // TRASFORMA IL PERCORSO DELL'IMMAGINE LOCALE IN UN URL
@@ -18,8 +19,9 @@ export default {
         },
 
     },
-
     mounted() {
+
+        store.getApartsPosition();
 
     },
 
@@ -37,6 +39,10 @@ export default {
                 <div class="col">
                     <h1 class="">HOME VIEW</h1>
 
+                    <div class="py-4 w-25">
+                        <input type="number" @keydown.enter="this.$router.push('search')"
+                            v-model="store.geometry[0]['radius']" class="form-control">
+                    </div>
 
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid facere perspiciatis quam harum ipsa
                         molestiae nihil doloribus? Iure, illo sunt! Asperiores magnam odit id veniam enim eius aliquid
@@ -54,6 +60,7 @@ export default {
                         Dignissimos dolor ipsam quam similique in exercitationem iure ea, minus voluptatum? Non cupiditate
                         vitae tenetur? Temporibus ex aliquid reprehenderit, doloremque tempora vitae voluptate ipsa dicta
                         minus.</p>
+
                 </div>
 
             </div>

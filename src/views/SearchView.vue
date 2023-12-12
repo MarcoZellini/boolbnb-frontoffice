@@ -1,7 +1,6 @@
 <script >
 
 import axios from 'axios';
-import { shallowReactive } from 'vue';
 import { store } from '../store.js'
 
 export default {
@@ -10,8 +9,8 @@ export default {
     data() {
         return {
             store,
-            apartsPosition: '',
-
+            searchIDs: null,
+            filteredApartments: null
         }
 
     },
@@ -19,25 +18,41 @@ export default {
 
     },
     mounted() {
-        this.apartsPosition = store.test();
-        console.log(this.apartsPosition)
+
+        store.filterApartmentsByRadius();
 
     }
 
-
-    /* 
-}, mounted() {
-    console.log(this.url + this.apartsPosition)
 }
-    */
-}
-
 
 </script>
 
 <template>
     <div class="container">
-        Hello
+        <div class="py-4 w-25">
+            <input type="number" @keydown.enter="store.filterApartmentsByRadius()" v-model="store.geometry[0]['radius']"
+                class="form-control">
+        </div>
+        <div class="py-4">
+            {{ store.geometry }}
+        </div>
+        <div class="py-4">
+            ID Appartamenti filtrati: {{ store.searchIDs }}
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 py-4 g-2">
+            <div class="col" v-for="apartment in store.filteredApartments">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ apartment.title }}
+                        </h5>
+                        <p class="card-text">
+                            {{ apartment.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

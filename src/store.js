@@ -7,37 +7,55 @@ export const store = reactive({
     baseUrl: 'http://127.0.0.1:8000/', // URL BASE DI laravel_api
     apartmentApi: 'api/apartments',
 
-    urlApiAparts: 'http://127.0.0.1:8000/api/apartments/search',
+    apartmentsSearchApi: 'http://127.0.0.1:8000/api/apartments/search',
+    TomTomBaseUrl: 'https://api.tomtom.com/search/2/geometryFilter.json?key=QTQljhHM9rS4d2vJLMcDX9qzl8tyGA43&geometryList=',
 
-    url: 'https://api.tomtom.com/search/2/geometryFilter.json?key=QTQljhHM9rS4d2vJLMcDX9qzl8tyGA43&geometryList=[{"position": "45.3967794,11.9139147","radius": 40000,"type": "CIRCLE"}]&poiList=',
+    apartmentApiId: 'api/apartments-id',
 
-    apartsPosition: '',
+    geometry: [{
+        "position": "45.3967794,11.9139147",
+        "radius": 20000,
+        "type": "CIRCLE"
+    }],
 
-    test() {
-        axios.get(this.urlApiAparts)
+    apartsPositionJson: '',
+    searchResult: '',
+    searchIDs: [],
+    filteredApartments: [],
+
+    getApartsPosition() {
+        axios.get(this.apartmentsSearchApi)
             .then(response => {
-                this.apartsPosition = response.data;
-                //console.log(this.apartsPosition);
+                this.apartsPositionJson = response.data;
             })
             .catch(err => console.log(err.message));
+    },
+    async filterApartmentsByRadius() {
 
-        return this.apartsPosition;
-        //console.log(this.apartsPosition)
+        await axios.get(this.TomTomBaseUrl + JSON.stringify(this.geometry) + '&poiList=' + JSON.stringify(this.apartsPositionJson))
+            .then(response => {
+                console.log('1')
+                console.log(response)
+                console.log('geometry', this.geometry)
+                this.searchResult = response.data.results
+                this.searchIDs = [];
+                this.searchResult.forEach(result => {
+                    this.searchIDs.push(result['id']);
+                });
+            })
+            .catch(err => {
+                console.log(err.message)
+            });
+
+        await axios.post('http://127.0.0.1:8000/api/apartments', this.searchIDs)
+            .then(response => {
+                console.log('2', response)
+                console.log('appartamenti', response.data.result)
+                this.filteredApartments = response.data.result;
+            })
+            .catch(err => {
+                console.log(err.message)
+            });
 
     },
-    test2() {
-        if (this.apartsPosition) {
-            console.log(this.apartsPosition)
-            axios.get(this.url + JSON.stringify(this.apartsPosition))
-                .then(response => {
-                    console.log(response.data)
-                })
-                .catch(err => console.log(err.message));
-        } else {
-            console.log('ciao')
-        }
-
-    }
-
-
 })
