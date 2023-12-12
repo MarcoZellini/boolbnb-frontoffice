@@ -17,6 +17,9 @@ export default {
         },
 
         search() {
+            store.minRooms = 1;
+            store.minBeds = 1;
+            store.maxRadius = 20;
             store.filterApartments();
             this.$router.push('search')
         }
