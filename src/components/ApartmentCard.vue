@@ -1,5 +1,5 @@
 <script >
-import { store } from '../../store';
+import { store } from '../store';
 
 export default {
     name: 'ApartmentCard',
@@ -27,7 +27,9 @@ export default {
 
             if (images.length > 0) {
                 const mainImage = images.find(image => image.is_main);
-                return store.baseUrl + 'storage/' + mainImage.path;
+                if (mainImage) {
+                    return store.baseUrl + 'storage/' + mainImage.path;
+                }
             } else {
                 return this.getPlaceholderImg('../img/placeholders/placeholder.jpg');
             }
@@ -58,18 +60,18 @@ export default {
                 <p class="my-1 px-1 d-inline-flex justify-content-around w-100" style="font-size: 1.10rem;">
 
                     <span>
-                        <font-awesome-icon icon="fa-solid fa-people-roof" style="color: #e00b41;"
-                            class="me-1" />{{ apartment.rooms }}
+                        <font-awesome-icon icon="fa-solid fa-people-roof" style="color: #e00b41;" class="me-1" />{{
+                            apartment.rooms }}
                     </span>
 
                     <span>
-                        <font-awesome-icon icon="fa-solid fa-bed" style="color: #e00b41;"
-                            class="me-1" />{{ apartment.beds }}
+                        <font-awesome-icon icon="fa-solid fa-bed" style="color: #e00b41;" class="me-1" />{{ apartment.beds
+                        }}
                     </span>
 
                     <span>
-                        <font-awesome-icon icon="fa-solid fa-restroom" style="color: #e00b41;"
-                            class="me-1" />{{ apartment.bathrooms }}
+                        <font-awesome-icon icon="fa-solid fa-restroom" style="color: #e00b41;" class="me-1" />{{
+                            apartment.bathrooms }}
                     </span>
 
                 </p>
@@ -82,8 +84,8 @@ export default {
                 }">View</router-link> -->
 
                 <p class="m-0">
-                    <font-awesome-icon icon="fa-solid fa-map-pin" style="color: #e00b41;"
-                        class="me-1" />{{ apartment.address }}
+                    <font-awesome-icon icon="fa-solid fa-map-pin" style="color: #e00b41;" class="me-1" />{{
+                        apartment.address }}
                 </p>
 
 
@@ -94,5 +96,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../scss/partials/apartmentCard.scss';
+@use '../assets/scss/partials/apartmentCard.scss';
 </style>

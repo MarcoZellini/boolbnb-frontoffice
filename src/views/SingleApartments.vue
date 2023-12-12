@@ -73,8 +73,8 @@ export default {
 
                     <!-- APPLIES PADDING CLASSES BASED ON THE LOOP ITERATION -->
                     <div class="col-6 m-0 p-1 h-50">
-                        <img class="h-100 img-fluid object-fit-cover rounded {{ $styleClass }} shadow" src="path    image"
-                            alt="titolo apartamento">
+                        <!-- <img class="h-100 img-fluid object-fit-cover rounded {{ $styleClass }} shadow" src="path    image"
+                            alt="titolo apartamento"> -->
                     </div>
                 </div>
             </div>

@@ -81,5 +81,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../scss/partials/Navbar.scss';
+@use '../assets/scss/partials/Navbar.scss';
 </style>

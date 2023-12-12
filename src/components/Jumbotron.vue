@@ -1,6 +1,6 @@
 <script >
 
-import { store } from '../../store.js'
+import { store } from '../store.js'
 
 export default {
     name: 'Jumbotron',
@@ -41,5 +41,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../scss/partials/jumbotron.scss';
+@use '../assets/scss/partials/jumbotron.scss';
 </style>

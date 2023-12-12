@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { store } from '../store.js'
 
-import ApartmentCard from '../assets/components/ApartmentCard.vue';
+import ApartmentCard from '../components/ApartmentCard.vue';
 
 export default {
     name: 'SearchView',

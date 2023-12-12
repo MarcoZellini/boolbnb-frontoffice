@@ -2,8 +2,8 @@
 
 import { store } from '../store'
 
-import ApartmentCard from "../assets/components/ApartmentCard.vue"
-import Jumbotron from "../assets/components/Jumbotron.vue"
+import ApartmentCard from "../components/ApartmentCard.vue"
+import Jumbotron from "../components/Jumbotron.vue"
 
 export default {
     name: 'HomeView',
