@@ -28,10 +28,15 @@ export const store = reactive({
     // array degli appartamenti
     apartmentsIndex: '',
 
-    // variabili che stalvano risultati filtraggio
+    // variabili che salvano risultati filtraggio
     searchResult: '',
     filteredIDs: [],
     filteredApartments: [],
+
+    //filtri
+    minRooms: 1,
+    minBeds: 1,
+    maxRadius: 20,
 
     async getApartments() {
 
@@ -72,10 +77,11 @@ export const store = reactive({
             .catch(err => {
                 console.log(err.message)
             });
-        //console.log(this.inputGeometry);
+        // Aggiorno il raggio di ricerca
+        this.inputGeometry[0].radius = this.maxRadius * 1000;
+        console.log('geometry', this.inputGeometry);
 
-        //console.log(this.TomTomGeometryFilterUrl + this.TomTomKey + '&geometryList=' + JSON.stringify(this.inputGeometry) + '&poiList=' + JSON.stringify(this.inputApartments))
-
+        //chiamata AJAX a Geometry Filter API di Tom Tom per filtrare gli appartamenti per raggio
         await axios.get(this.TomTomGeometryFilterUrl + this.TomTomKey + '&geometryList=' + JSON.stringify(this.inputGeometry) + '&poiList=' + JSON.stringify(this.inputApartments))
             .then(response => {
                 this.searchResult = response.data.results
@@ -91,6 +97,18 @@ export const store = reactive({
 
         this.filteredApartments = this.apartmentsIndex.filter(apartment => {
             return this.filteredIDs.includes(apartment.id)
+        })
+        //console.log('Appartamenti filtrati', this.filteredApartments)
+
+        //filtro appartamenti per numero stanze
+        this.filteredApartments = this.filteredApartments.filter(apartment => {
+            return apartment.rooms >= this.minRooms
+        })
+        //console.log('Appartamenti filtrati', this.filteredApartments)
+
+        //filtro appartamenti per numero letti
+        this.filteredApartments = this.filteredApartments.filter(apartment => {
+            return apartment.beds >= this.minBeds
         })
         console.log('Appartamenti filtrati', this.filteredApartments)
 
