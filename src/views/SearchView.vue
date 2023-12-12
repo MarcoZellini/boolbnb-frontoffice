@@ -32,12 +32,12 @@ export default {
         <form action="" class="py-4" @submit.stop.prevent="store.filterApartments()">
 
             <!-- RANGES ROOMS & BADS -->
-            <div class="row row-cols-1 gx-5 gy-2 justify-content-between">
+            <div class="row row-cols-1 gx-5 gy-5 justify-content-between">
 
                 <!-- BARRA RICERCA -->
-                <div class="col-md-12">
+                <div class="col-md-12 d-flex justify-content-center">
                     <input type="search" v-model="store.inputAddress" placeholder="Cerca su BoolBnb..."
-                        class="w-100 rounded-pill border-1 shadow">
+                        class="w-50 rounded-pill border-1 shadow">
                 </div>
 
                 <!-- STANZE -->
