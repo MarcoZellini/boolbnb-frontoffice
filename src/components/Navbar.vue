@@ -38,7 +38,7 @@ export default {
 
                 <div class="logo" style="width: 180px">
 
-                    <img class="img-fluid" :src="getPlaceholderImg('../assets/img/logos/logo-desktop.png')" alt="">
+                    <img class="img-fluid " :src="getPlaceholderImg('../assets/img/logos/logo-desktop.png')" alt="BoolBnb">
 
                 </div>
 
