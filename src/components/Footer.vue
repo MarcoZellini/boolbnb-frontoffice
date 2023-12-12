@@ -10,13 +10,32 @@ export default {
         return {
             store,
             citiesArray: [
-                'Bolzano',
-                'Palermo',
-                'Pesaro',
-                'Padova',
+                {
+                    citta1: 'Bolzano',
+                    citta2: 'Palermo',
+                    citta3: 'Pesaro',
+                    citta4: 'Padova',
+                },
+                {
+                    citta1: 'Torino',
+                    citta2: 'Roma',
+                    citta3: 'Milano',
+                    citta4: 'Venezia',
+                },
+                {
+                    citta1: 'Firenze',
+                    citta2: 'Genova',
+                    citta3: 'Bologna',
+                    citta4: 'Napoli',
+                },
+                {
+                    citta1: 'Cagliari',
+                    citta2: 'Genova',
+                    citta3: 'Aosta',
+                    citta4: 'Catanzaro',
+                }
             ]
         }
-
     },
 
     methods: {
@@ -27,6 +46,9 @@ export default {
         },
 
         citiesSearch(city) {
+            store.minRooms = 1;
+            store.minBeds = 1;
+            store.maxRadius = 20;
             store.inputAddress = city;
             store.filterApartments();
             this.$router.push('search')
@@ -44,13 +66,13 @@ export default {
             <div class="row justify-content-between h-100 py-4">
 
                 <!-- COLUMN -->
-                <div class="col-6 col-md-3 h-100" v-for="n in 4">
+                <div class="col-6 col-md-3 h-100" v-for="col in this.citiesArray">
                     <h6 class="mb-0 fw-bold">Lasciati Ispirare</h6>
                     <p class="text-muted mb-1">Le mete di tendenza:</p>
                     <!-- PLACEHOLDERS -->
                     <ul class="list-unstyled d-flex flex-row flex-wrap flex-lg-nowrap flex-lg-column">
 
-                        <li class="p-0" v-for="city in this.citiesArray" @click="citiesSearch(city)">
+                        <li class="p-0" v-for="city in col" @click="citiesSearch(city)">
                             <a href="javascript:void(0)" class="ms-1 focusable-bnb">{{ city }}</a>
                         </li>
 
