@@ -31,7 +31,7 @@ export default {
                     return store.baseUrl + 'storage/' + mainImage.path;
                 }
             } else {
-                return this.getPlaceholderImg('../img/placeholders/placeholder.jpg');
+                return this.getPlaceholderImg('../assets/img/placeholders/placeholder.jpg');
             }
         }
 

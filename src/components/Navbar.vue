@@ -26,19 +26,19 @@ export default {
 
 <template>
     <nav class="navbar navbar-expand-md navbar-light bg-white">
-        <div class="container">
+        <div class="container d-flex justify-content-between align-items-center">
 
             <!-- LOGOS -->
-            <router-link class="navbar-brand d-flex align-items-center" to="/">
+            <router-link class="navbar-brand d-flex align-items-center pb-2" to="/">
                 <div class="logo d-sm-none" style="width: 50px">
 
-                    <img class="img-fluid " :src="getPlaceholderImg('../img/logos/logo-sm.png')" alt="BoolBnb">
+                    <img class="img-fluid " :src="getPlaceholderImg('../assets/img/logos/logo-sm.png')" alt="BoolBnb">
 
                 </div>
 
-                <div class="logo d-none d-sm-inline-block" style="width: 250px">
+                <div class="logo" style="width: 180px">
 
-                    <img class="img-fluid " :src="getPlaceholderImg('../img/logos/logo-desktop.png')" alt="BoolBnb">
+                    <img class="img-fluid" :src="getPlaceholderImg('../assets/img/logos/logo-desktop.png')" alt="">
 
                 </div>
 
@@ -52,29 +52,13 @@ export default {
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <!-- Left Side Of Navbar DELETE IF NOT USED-->
-                <ul class="navbar-nav me-auto">
-
-                    <li class="nav-item">
-                        <!-- <router-link class="nav-link nav-link-bnb" to="/">Home</router-link> -->
-                    </li>
-
-                </ul>
-
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item">
-                        <router-link class="nav-link nav-link-bnb" to="/">Home</router-link>
-                    </li>
+                <div class="d-flex align-items-center ms-auto">
+                    <router-link class="nav-link nav-link-bnb" to="/">Home</router-link>
+                    <a class="nav-link nav-link-bnb" href="http://127.0.0.1:8000/">Vai alla Dashboard</a>
+                </div>
 
-                    <!-- DASHBOARD LINK -->
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bnb" href="http://127.0.0.1:8000/">Vai alla Dashboard</a>
-                    </li>
-
-                </ul>
             </div>
         </div>
     </nav>
