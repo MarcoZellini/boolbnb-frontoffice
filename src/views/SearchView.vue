@@ -40,12 +40,6 @@ export default {
 
         <form action="" @keydown.enter="store.filterApartmentsByRadius()">
 
-            <div class="row">
-                <div class="col py-4 w-25">
-                    <input type="number" v-model="store.geometry[0]['radius']" class="form-control">
-                </div>
-            </div>
-
             <!-- RANGES ROOMS & BADS -->
             <div class="row">
                 <!-- STANZE -->
@@ -83,18 +77,17 @@ export default {
                 </div>
             </div>
 
-
-
-
-
         </form>
 
         <hr>
 
         <!-- CARD -->
-        <div class="container">
-            <div class="row">
+        <div class="container mt-4">
+            <div class="row" v-if="store.filteredApartments.length > 0">
                 <ApartmentCard :apartment="apartment" v-for="apartment in store.filteredApartments" />
+            </div>
+            <div v-else>
+                La ricerca non ha restituito risultati
             </div>
         </div>
 
