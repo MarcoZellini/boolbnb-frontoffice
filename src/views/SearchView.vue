@@ -5,43 +5,33 @@ import { store } from '../store.js'
 
 export default {
     name: 'SearchView',
-
     data() {
         return {
-            store,
-            searchIDs: null,
-            filteredApartments: null
+            store
         }
-
     },
     methods: {
-        test() {
-            if (!store.apartsPositionJson) {
-                store.getApartsPosition();
-            }
-        }
 
     },
     mounted() {
-        this.test();
-        store.filterApartmentsByRadius();
-
+        store.getApartments();
     }
-
 }
 
 </script>
 
 <template>
     <div class="container">
-        <div class="py-4 w-25">
-            <input type="number" @keydown.enter="store.filterApartmentsByRadius()" v-model="store.geometry[0]['radius']"
-                class="form-control">
+
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-8 py-4">
+                <input type="search" @keydown.enter="store.filterApartments()" v-model="store.inputAddress"
+                    placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow">
+            </div>
+
         </div>
-        <div class="py-2">
-            {{ store.geometry }} <br>
-            ID Appartamenti filtrati: {{ store.searchIDs }}
-        </div>
+
         <div class="row row-cols-1 row-cols-md-3 py-4 g-2">
             <div class="col" v-for="apartment in store.filteredApartments">
                 <div class="card h-100">

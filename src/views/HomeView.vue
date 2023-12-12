@@ -7,19 +7,14 @@ import Jumbotron from "../assets/components/Jumbotron.vue"
 
 export default {
     name: 'HomeView',
-
     components: {
         ApartmentCard,
         Jumbotron,
     },
-
     data() {
         return {
-
             store
-
         }
-
     },
     methods: {
 
@@ -30,12 +25,8 @@ export default {
 
     },
     mounted() {
-
         store.getApartments();
-        store.getApartsPosition();
-
     },
-
 }
 
 </script>

@@ -4,15 +4,11 @@ import { store } from '../../store.js'
 
 export default {
     name: 'Jumbotron',
-
     data() {
-
         return {
             store
         }
-
     },
-
     methods: {
 
         // TRASFORMA IL PERCORSO DELL'IMMAGINE LOCALE IN UN URL
@@ -20,8 +16,12 @@ export default {
             return new URL(`${url}`, import.meta.url).href
         },
 
-    },
+        search() {
+            store.filterApartments();
+            this.$router.push('search')
+        }
 
+    },
 }
 
 </script>
@@ -32,7 +32,7 @@ export default {
 
             <div class="col-8">
                 <h1 class="text-light text-center">BnBenuti</h1>
-                <input type="search" @keydown.enter="this.$router.push('search')" v-model="store.geometry[0]['radius']"
+                <input type="search" @keydown.enter="this.search()" v-model="store.inputAddress"
                     placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow">
             </div>
 
