@@ -14,10 +14,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faShieldHalved } from '@fortawesome/free-solid-svg-icons'
-
+import { faMapPin } from '@fortawesome/free-solid-svg-icons'
+import { faBed } from '@fortawesome/free-solid-svg-icons'
+import { faPeopleRoof } from '@fortawesome/free-solid-svg-icons'
+import { faRestroom } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faBars, faShieldHalved)
+library.add(faBars, faMapPin, faBed, faPeopleRoof, faRestroom)
 
 createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

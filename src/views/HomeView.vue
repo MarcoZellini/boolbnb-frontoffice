@@ -21,7 +21,6 @@ export default {
         }
 
     },
-
     methods: {
 
         // TRASFORMA IL PERCORSO DELL'IMMAGINE LOCALE IN UN URL
@@ -30,10 +29,10 @@ export default {
         },
 
     },
-
     mounted() {
 
         store.getApartments();
+        store.getApartsPosition();
 
     },
 
@@ -55,8 +54,8 @@ export default {
                 <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsIndex" />
 
             </div>
-
         </div>
+
     </section>
 </template>
 

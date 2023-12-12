@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 import HomeView from './views/HomeView.vue';
 import SingleApartments from './views/SingleApartments.vue'
+import SearchView from './views/SearchView.vue';
 
 const routes = [
 
@@ -15,7 +16,11 @@ const routes = [
         name: 'apartment',
         component: SingleApartments
     },
-
+        path: '/search',
+        name: 'search',
+        component: SearchView
+    },
+    
 ];
 
 // router E' UNA ISTANZA di createRouter() CHE USA LE ROTTE DICHIARATE NELLA const routes
