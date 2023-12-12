@@ -13,7 +13,7 @@ export const store = reactive({
     apartmentApiId: 'api/apartments-id',
 
     geometry: [{
-        "position": "45.3967794,11.9139147",
+        "position": "45.5348,9.425785",
         "radius": 20000,
         "type": "CIRCLE"
     }],
@@ -30,7 +30,7 @@ export const store = reactive({
         axios.get(this.baseUrl + this.apartmentApi)
             .then(response => {
 
-                this.apartmentsIndex = response.data.result;
+                this.apartmentsIndex = response.data.result.data;
                 console.log("Apartments Index:", this.apartmentsIndex);
 
             })

@@ -3,14 +3,18 @@
 import axios from 'axios';
 import { store } from '../store.js'
 
+import ApartmentCard from '../assets/components/ApartmentCard.vue';
+
 export default {
     name: 'SearchView',
+
+    components: {
+        ApartmentCard,
+    },
 
     data() {
         return {
             store,
-            searchIDs: null,
-            filteredApartments: null
         }
 
     },
@@ -34,28 +38,73 @@ export default {
 
 <template>
     <div class="container">
-        <div class="py-4 w-25">
-            <input type="number" @keydown.enter="store.filterApartmentsByRadius()" v-model="store.geometry[0]['radius']"
-                class="form-control">
-        </div>
+        <form action="" @keydown.enter="store.filterApartmentsByRadius()">
+
+            <div class="row">
+                <div class="col py-4 w-25">
+                    <input type="number" v-model="store.geometry[0]['radius']" class="form-control">
+                </div>
+            </div>
+
+            <!-- RANGES ROOMS & BADS -->
+            <div class="row">
+                <!-- STANZE -->
+                <div class="col-sm-6 mb-3">
+                    <label for="rooms" class="form-label text-capitalize">Camere: </label>
+                    <output id="amount_rooms" name="amount_rooms" for="rooms">1</output>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span>1</span>
+                        <input type="range" class="slider" id="rooms" name="rooms" min="1" max="10"
+                            value="{{ old('rooms', 1) }}" oninput="amount_rooms.value=rooms.value">
+                        <span>10</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <small id="helpId" class="form-text text-muted">Inserisci il numero di stanze</small>
+
+                    </div>
+                </div>
+
+                <!-- LETTI -->
+                <div class="col-sm-6 mb-3">
+                    <label for="beds" class="form-label text-capitalize">Letti:</label>
+                    <output id="amount_beds" name="amount_beds" for="beds">1</output>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span>1</span>
+                        <input type="range" class="slider" id="beds" name="beds" min="1" max="10"
+                            value="{{ old('beds', 1) }}" oninput="amount_beds.value=beds.value">
+                        <span>10</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <small id="helpId" class="form-text text-muted">Inserisci il numero di letti</small>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+        </form>
+
+        <hr>
+
+
+        <h6>DEBUG OUTPUT RICERCA</h6>
         <div class="py-2">
             {{ store.geometry }} <br>
             ID Appartamenti filtrati: {{ store.searchIDs }}
         </div>
-        <div class="row row-cols-1 row-cols-md-3 py-4 g-2">
-            <div class="col" v-for="apartment in store.filteredApartments">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            {{ apartment.title }}
-                        </h5>
-                        <p class="card-text">
-                            {{ apartment.description }}
-                        </p>
-                    </div>
-                </div>
+
+        <!-- CARD -->
+        <div class="container">
+            <div class="row">
+                <ApartmentCard :apartment="apartment" v-for="apartment in store.filteredApartments" />
             </div>
         </div>
+
     </div>
 </template>
 
