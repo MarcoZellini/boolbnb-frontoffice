@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
 import HomeView from './views/HomeView.vue';
+import SingleApartments from './views/SingleApartments.vue'
 import SearchView from './views/SearchView.vue';
 
 const routes = [
@@ -11,15 +12,14 @@ const routes = [
         component: HomeView
     },
     {
+        path: '/apartment/:id',
+        name: 'apartment',
+        component: SingleApartments
+    },
         path: '/search',
         name: 'search',
         component: SearchView
     },
-    /* {
-        path: '/apartment/:slug',
-        name: 'apartment',
-        component: SingleApartmentView,
-    }, */
     
 ];
 
