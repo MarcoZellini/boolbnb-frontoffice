@@ -17,7 +17,7 @@ export const store = reactive({
         "radius": 20000,
         "type": "CIRCLE"
     }],
-  
+
     apartmentsIndex: '',
 
     apartsPositionJson: '',
@@ -38,7 +38,7 @@ export const store = reactive({
                 console.error(err);
             })
 
-    }
+    },
 
     getApartsPosition() {
         axios.get(this.apartmentsSearchApi)
@@ -47,7 +47,7 @@ export const store = reactive({
             })
             .catch(err => console.log(err.message));
     },
-      
+
     async filterApartmentsByRadius() {
 
         await axios.get(this.TomTomBaseUrl + JSON.stringify(this.geometry) + '&poiList=' + JSON.stringify(this.apartsPositionJson))

@@ -1,12 +1,14 @@
 <script >
 
+import { store } from '../../store.js'
+
 export default {
     name: 'Jumbotron',
 
     data() {
 
         return {
-
+            store
         }
 
     },
@@ -30,7 +32,8 @@ export default {
 
             <div class="col-8">
                 <h1 class="text-light text-center">BnBenuti</h1>
-                <input type="search" placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow">
+                <input type="search" @keydown.enter="this.$router.push('search')" v-model="store.geometry[0]['radius']"
+                    placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow">
             </div>
 
         </div>
