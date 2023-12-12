@@ -15,10 +15,15 @@ export default {
 
     },
     methods: {
+        test() {
+            if (!store.apartsPositionJson) {
+                store.getApartsPosition();
+            }
+        }
 
     },
     mounted() {
-
+        this.test();
         store.filterApartmentsByRadius();
 
     }
@@ -33,10 +38,8 @@ export default {
             <input type="number" @keydown.enter="store.filterApartmentsByRadius()" v-model="store.geometry[0]['radius']"
                 class="form-control">
         </div>
-        <div class="py-4">
-            {{ store.geometry }}
-        </div>
-        <div class="py-4">
+        <div class="py-2">
+            {{ store.geometry }} <br>
             ID Appartamenti filtrati: {{ store.searchIDs }}
         </div>
         <div class="row row-cols-1 row-cols-md-3 py-4 g-2">

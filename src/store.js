@@ -34,8 +34,8 @@ export const store = reactive({
 
         await axios.get(this.TomTomBaseUrl + JSON.stringify(this.geometry) + '&poiList=' + JSON.stringify(this.apartsPositionJson))
             .then(response => {
-                console.log('1')
-                console.log(response)
+                //console.log('1')
+                //console.log(response)
                 console.log('geometry', this.geometry)
                 this.searchResult = response.data.results
                 this.searchIDs = [];
@@ -49,7 +49,7 @@ export const store = reactive({
 
         await axios.post('http://127.0.0.1:8000/api/apartments', this.searchIDs)
             .then(response => {
-                console.log('2', response)
+                //console.log('2', response)
                 console.log('appartamenti', response.data.result)
                 this.filteredApartments = response.data.result;
             })
