@@ -32,13 +32,13 @@ export default {
             <router-link class="navbar-brand d-flex align-items-center" to="/">
                 <div class="logo d-sm-none" style="width: 50px">
 
-                    <img class="img-fluid " :src="getPlaceholderImg('../img/logos/logo-sm.png')" alt="BoolBnb">
+                    <img class="img-fluid " :src="getPlaceholderImg('../assets/img/logos/logo-sm.png')" alt="BoolBnb">
 
                 </div>
 
                 <div class="logo d-none d-sm-inline-block" style="width: 250px">
 
-                    <img class="img-fluid " :src="getPlaceholderImg('../img/logos/logo-desktop.png')" alt="BoolBnb">
+                    <img class="img-fluid " :src="getPlaceholderImg('../assets/img/logos/logo-desktop.png')" alt="BoolBnb">
 
                 </div>
 

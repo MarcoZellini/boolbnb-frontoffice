@@ -39,7 +39,7 @@ export default {
 
         <div class="container">
 
-            <div class="row">
+            <div class="row gx-5 gy-2">
 
                 <!-- CARD COMPONENT -->
                 <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsIndex" />
