@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-
+import ContactForm from '../components/ContactForm.vue'
 export default {
 
     data() {
@@ -35,6 +35,9 @@ export default {
     mounted() {
         this.getSingleApartment()
     },
+    components: {
+        ContactForm
+    }
 
 }
 </script>
@@ -162,13 +165,16 @@ export default {
             </div>
 
             <!-- mappa -->
-            <div class="col">
+            <!-- <div class="col">
                 <h3>mappas</h3>
                 <div id="map-div"></div>
-            </div>
+            </div> -->
 
             <!-- form contatto -->
-            <div class="col">
+
+            <ContactForm class="py-5" />
+
+            <!-- <div class="col">
                 <h3>form contatto</h3>
                 <form action="">
                     <div class="row">
@@ -201,7 +207,8 @@ export default {
                         conferma
                     </button>
                 </form>
-            </div>
+            </div> -->
+
         </div>
     </div>
 </template>
