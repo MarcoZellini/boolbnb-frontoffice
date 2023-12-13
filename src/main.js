@@ -19,8 +19,9 @@ import { faBed } from '@fortawesome/free-solid-svg-icons'
 import { faPeopleRoof } from '@fortawesome/free-solid-svg-icons'
 import { faRestroom } from '@fortawesome/free-solid-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faBars, faMapPin, faBed, faPeopleRoof, faRestroom, faPaperPlane)
+library.add(faBars, faMapPin, faBed, faPeopleRoof, faRestroom, faPaperPlane, faCheck)
 
 createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
