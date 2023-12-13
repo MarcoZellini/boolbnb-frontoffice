@@ -43,7 +43,7 @@ export default {
 
 <template>
     <!-- CARD -->
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" v-if="apartment.is_visible">
 
         <router-link :to="{
             name: 'apartment',
@@ -52,8 +52,8 @@ export default {
 
             <div class="card border-0 m-0 h-100 bnb-apartment-card">
 
-                <img class="card-img-top rounded bnb-shadow bnb-apt-thumb"
-                    :src="getMainImagePath(apartment.images)" alt="Title" />
+                <img class="card-img-top rounded bnb-shadow bnb-apt-thumb" :src="getMainImagePath(apartment.images)"
+                    alt="Title" />
 
                 <div class="card-body p-0 py-1">
 
@@ -65,7 +65,8 @@ export default {
                         </span>
 
                         <span>
-                            <font-awesome-icon icon="fa-solid fa-bed" style="color: #e00b41;" class="me-1" />{{ apartment.beds
+                            <font-awesome-icon icon="fa-solid fa-bed" style="color: #e00b41;" class="me-1" />{{
+                                apartment.beds
                             }}
                         </span>
 
