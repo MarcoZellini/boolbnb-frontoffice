@@ -19,6 +19,7 @@ export default {
 
     },
     mounted() {
+        store.getServices();
     }
 }
 
@@ -88,6 +89,30 @@ export default {
                     </div>
 
                 </div>
+
+                <!-- SERVIZI -->
+                <div class="col-md-12">
+
+                    <h6 class="fs-5">Seleziona i servizi</h6>
+
+                    <div class="row justify-content-center px-3 px-md-1">
+                        <div class="col-4 col-md-3 col-lg-2 form-check form-check-inline my-2 d-flex-inline flex-grow-1 bnb-service-col position-relative"
+                            v-for="service in store.services">
+
+                            <input class="form-check-input me-2 services rounded-pill" type="checkbox" :id="service.id"
+                                v-model="store.minServices" :value="service.id" />
+
+                            <div class="services_icons d-flex align-items-center">
+                                <img style="height:20px" :src="store.baseUrl + service.icon" alt="">
+                                <label class="form-check-label me-2" :for="service.id">
+                                    {{ service.name }}
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </form>
@@ -96,11 +121,16 @@ export default {
 
         <!-- CARD -->
         <div class="container mt-4">
-            <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
-                <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsFound" />
+            <div v-if="store.inputAddress != '' || store.apartmentsFound.length >= 0">
+                <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
+                    <ApartmentCard :apartment="apartment" v-for="     apartment      in      store.apartmentsFound     " />
+                </div>
+                <div v-else>
+                    La ricerca non ha restituito risultati
+                </div>
             </div>
             <div v-else>
-                La ricerca non ha restituito risultati
+                Digitare un indirizzo o il nome di una città e premere invio
             </div>
         </div>
 
