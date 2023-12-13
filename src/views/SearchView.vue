@@ -1,6 +1,5 @@
 <script >
 
-import axios from 'axios';
 import { store } from '../store.js'
 
 import ApartmentCard from '../components/ApartmentCard.vue';
@@ -20,7 +19,6 @@ export default {
 
     },
     mounted() {
-        store.getApartments();
     }
 }
 
@@ -29,7 +27,7 @@ export default {
 <template>
     <div class="container">
 
-        <form action="" class="py-4" @submit.stop.prevent="store.filterApartments()">
+        <form action="" class="py-4" @submit.stop.prevent="store.searchApartments()">
 
             <!-- RANGES ROOMS & BADS -->
             <div class="row row-cols-1 gx-5 gy-5 justify-content-between">
@@ -98,8 +96,8 @@ export default {
 
         <!-- CARD -->
         <div class="container mt-4">
-            <div class="row gx-5 gy-2" v-if="store.filteredApartments.length > 0">
-                <ApartmentCard :apartment="apartment" v-for="apartment in store.filteredApartments" />
+            <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
+                <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsFound" />
             </div>
             <div v-else>
                 La ricerca non ha restituito risultati
