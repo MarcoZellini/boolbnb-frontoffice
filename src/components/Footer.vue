@@ -50,7 +50,7 @@ export default {
             store.minBeds = 1;
             store.maxRadius = 20;
             store.inputAddress = city;
-            store.filterApartments();
+            store.searchApartments();
             this.$router.push('search')
         }
 
