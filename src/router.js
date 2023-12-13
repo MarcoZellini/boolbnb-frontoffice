@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from './views/HomeView.vue';
 import SingleApartments from './views/SingleApartments.vue';
 import SearchView from './views/SearchView.vue';
+import NotFound from './views/NotFound.vue';
 
 const routes = [
 
@@ -20,7 +21,12 @@ const routes = [
         path: '/search',
         name: 'search',
         component: SearchView
-    }
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound
+    },
 
 ];
 
