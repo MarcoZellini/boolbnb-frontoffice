@@ -20,7 +20,7 @@ export default {
             axios.get(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`)
                 .then(response => {
                     this.apartment = response.data.result
-                    console.log(this.apartment);
+                    /*   console.log(this.apartment); */
 
                 }).catch(error => {
                     console.error(error);
@@ -28,15 +28,11 @@ export default {
         }, getIcon(icon) {
             return store.baseUrl + icon;
         },
-        /*  getStyleClass(i) {
-             const styleClasses = ['style1', 'style2', 'style3']; // Define your style classes
-             return styleClasses[i % styleClasses.length];
-         } */
+
 
     },
 
     mounted() {
-        //console.log(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`);
         this.getSingleApartment()
     },
 
@@ -167,7 +163,7 @@ export default {
 
             <!-- mappa -->
             <div class="col">
-                <h3>mappa</h3>
+                <h3>mappas</h3>
                 <div id="map-div"></div>
             </div>
 
