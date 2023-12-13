@@ -20,10 +20,11 @@ nav {
     text-overflow: ellipsis;
     line-height: 1.25rem;
     word-break: break-word;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s;
 
     &:hover {
         background-color: $bnb-nav-btn-hover;
+        color: $bnb-primary;
     }
 }
 

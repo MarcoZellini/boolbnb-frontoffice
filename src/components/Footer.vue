@@ -66,9 +66,9 @@ export default {
             <div class="row justify-content-between h-100 py-4">
 
                 <!-- COLUMN -->
+                <h6 class="mb-1 fw-bold">Lasciati Ispirare</h6>
                 <div class="col-6 col-md-3 h-100" v-for="col in this.citiesArray">
-                    <h6 class="mb-0 fw-bold">Lasciati Ispirare</h6>
-                    <p class="text-muted mb-1">Le mete di tendenza:</p>
+                    <!--  <p class="text-muted mb-1">Le mete di tendenza:</p> -->
                     <!-- PLACEHOLDERS -->
                     <ul class="list-unstyled d-flex flex-row flex-wrap flex-lg-nowrap flex-lg-column">
 

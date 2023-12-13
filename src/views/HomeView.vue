@@ -36,10 +36,9 @@ export default {
 
         <!-- JUMBOTRON & SEARCH INPUT -->
         <Jumbotron />
-
         <div class="container">
 
-            <div class="row gx-5 gy-2">
+            <div class="row gx-sm-5 gy-2">
 
                 <!-- CARD COMPONENT -->
                 <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsIndex" />

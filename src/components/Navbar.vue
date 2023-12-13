@@ -6,7 +6,7 @@ export default {
     data() {
 
         return {
-
+            currentRoute: ''
         }
 
     },
@@ -19,6 +19,12 @@ export default {
         },
 
     },
+    watch: {
+        $route(to) {
+            this.currentRoute = to.path;
+        },
+    },
+
 
 }
 
@@ -27,7 +33,6 @@ export default {
 <template>
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container d-flex justify-content-between align-items-center">
-
             <!-- LOGOS -->
             <router-link class="navbar-brand d-flex align-items-center pb-2" to="/">
                 <div class="logo d-sm-none" style="width: 50px">
@@ -56,9 +61,11 @@ export default {
 
                 <div class="d-flex align-items-center ms-auto">
 
-                    <router-link class="nav-link nav-link-bnb" to="/">Home</router-link>
+                    <router-link class="nav-link nav-link-bnb" to="/"
+                        :class="this.currentRoute === '/' ? 'bnb-color-important' : ''">Home</router-link>
 
-                    <router-link class="nav-link nav-link-bnb" to="search">Ricerca Avanzata</router-link>
+                    <router-link class="nav-link nav-link-bnb" to="search"
+                        :class="this.currentRoute === '/search' ? 'bnb-color-important' : ''">Ricerca Avanzata</router-link>
 
                     <a class="nav-link nav-link-bnb" href="http://127.0.0.1:8000/">Vai alla Dashboard</a>
 
