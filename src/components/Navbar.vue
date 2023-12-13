@@ -36,9 +36,9 @@ export default {
 
                 </div>
 
-                <div class="logo" style="width: 180px">
+                <div class="logo d-none d-sm-inline-block" style="width: 180px">
 
-                    <img class="img-fluid d-none d-sm-inline-block" :src="getPlaceholderImg('../assets/img/logos/logo-desktop.png')" alt="BoolBnb">
+                    <img class="img-fluid" :src="getPlaceholderImg('../assets/img/logos/logo-desktop.png')" alt="BoolBnb">
 
                 </div>
 
