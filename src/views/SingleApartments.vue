@@ -45,12 +45,49 @@ export default {
             return store.baseUrl + icon;
         },
 
+
+        async getVisitorData() {
+            axios.get('https://api.ipify.org?format=json')
+                .then(response => {
+                    const visitorIP = response.data.ip;
+
+                    const visitDate = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+
+                    // console.log("Visitor IP:", visitorIP, "Visit Date:", visitDate);
+
+                    const payload = {
+                        apartment_id: this.apartment.id,
+                        ip_address: visitorIP,
+                        date: visitDate
+                    }
+
+                    // console.log("Payload", payload);
+
+                    axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
+
+                        // console.log(response.data.message);
+
+                    })
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     },
 
     mounted() {
-        this.getSingleApartment();
+        this.getSingleApartment()
+        
     },
 
+    updated() {
+        this.getVisitorData()
+    },
+
+    components: {
+        ContactForm
+    }
 
 }
 </script>
@@ -106,11 +143,8 @@ export default {
 
         </div>
 
-
-
         <div class="row row-cols-1">
             <h1>{{ apartment.title }}</h1>
-
 
             <!-- descrizione -->
             <div class="col col-md-6">

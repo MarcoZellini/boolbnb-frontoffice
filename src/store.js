@@ -9,6 +9,8 @@ export const store = reactive({
     apartmentApi: 'api/apartments',
     searchAPI: 'api/search',
     servicesAPI: 'api/services',
+    viewsAPI: 'api/views',
+    
 
     // Variabili per TomTom
     TomTomKey: 'QTQljhHM9rS4d2vJLMcDX9qzl8tyGA43',
