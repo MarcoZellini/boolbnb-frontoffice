@@ -2,6 +2,8 @@
 import axios from 'axios';
 import { store } from '../store';
 import ContactForm from '../components/ContactForm.vue'
+import Map from '../components/Map.vue'
+
 export default {
 
     data() {
@@ -11,23 +13,38 @@ export default {
                 user: [],
                 images: []
             },
-            styleClasses: ['    ', 'bnb-mid-img', 'bnb-tr-img', 'bnb-mid-img', 'bnb-br-img'],
+            latitude: 0.0,
+            longitude: 0.0,
+            loading: false,
+            styleClasses: ['', 'bnb-mid-img', 'bnb-tr-img', 'bnb-mid-img', 'bnb-br-img'],
 
         }
+    },
+    components: {
+        ContactForm,
+        Map
     },
     methods: {
         getSingleApartment() {
             axios.get(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`)
                 .then(response => {
                     this.apartment = response.data.result
-                    /*   console.log(this.apartment); */
+                    this.latitude = this.apartment.latitude
+                    this.longitude = this.apartment.longitude
+                    this.address = this.apartment.address
+
+                    this.loading = true
+                    console.log('lat' + this.latitude, 'lon' + this.longitude);
+                    console.log(this.apartment);
 
                 }).catch(error => {
                     console.error(error);
                 })
-        }, getIcon(icon) {
+        },
+        getIcon(icon) {
             return store.baseUrl + icon;
         },
+
 
         async getVisitorData() {
             axios.get('https://api.ipify.org?format=json')
@@ -135,8 +152,11 @@ export default {
                     <h3>
                         Descrizione
                     </h3>
-                    <p class="w-100 text-break">
+                    <p v-if="apartment.description" class="w-100 text-break">
                         {{ apartment.description }}
+                    </p>
+                    <p v-else>
+                        nessuna descrizione attualmente disponibile
                     </p>
 
                 </div>
@@ -195,49 +215,15 @@ export default {
             </div>
 
             <!-- mappa -->
-            <!-- <div class="col">
-                <h3>mappas</h3>
-                <div id="map-div"></div>
-            </div> -->
-
+            <div class="col">
+                <h3 class=" border-top pt-2">dove ti troverai</h3>
+                <p>{{ apartment.address }}</p>
+                <Map v-if="this.loading" :latitude="this.latitude" :longitude="this.longitude" />
+                <div v-else>loading...</div>
+            </div>
             <!-- form contatto -->
 
             <ContactForm class="py-5" />
-
-            <!-- <div class="col">
-                <h3>form contatto</h3>
-                <form action="">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <input class="w-100 mt-2 form-control" type="text" name="name"
-                                placeholder="inserisci il tuo nome">
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <input class="w-100 mt-2 form-control" type="text" name="lastname"
-                                placeholder="inserisci il tuo cognome">
-                        </div>
-                        <div class="col-12">
-                            <input class="w-100 mt-2 form-control" type="email" name="email"
-                                placeholder="inserisci la tuo indirizzo email">
-                        </div>
-                        <div class="col-12">
-                            <input class="w-100 mt-2 form-control" type="tel" name="phone"
-                                placeholder="inserisci il tuo numero di tefelono">
-                        </div>
-                        <div class="col-12">
-                            <input class="w-100 mt-2 form-control" type="text" name="subject"
-                                placeholder="inserisci l'oggetto del messaggio">
-                        </div>
-                        <div class="col-12">
-                            <textarea class="w-100 mt-2 form-control" name="message" id="message" cols="30" rows="10"
-                                placeholder="inserisci il tuo messaggio"></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-bnb rounded-pill mt-2">
-                        conferma
-                    </button>
-                </form>
-            </div> -->
 
         </div>
     </div>
