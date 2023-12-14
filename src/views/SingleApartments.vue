@@ -108,7 +108,7 @@ export default {
                 <!-- MAIN IMAGE -->
                 <div class="wrapper_images" v-for="image in apartment.images">
                     <div class="wrappper" v-if="image.is_main === 1">
-                        <img class="w-100 object-fit-cover rounded-start bnb-main-img shadow "
+                        <img class="w-100 h-100 object-fit-cover rounded-start bnb-main-img shadow "
                             :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title"
                             :style="apartment.images.length < 5 ? 'border-radius: 0.375rem' : ''">
                     </div>
@@ -121,6 +121,7 @@ export default {
                     <template v-for="(image, i) in this.filteredImg" :key="i">
                         <template v-if="!image.is_main">
                             <div class="col-6 m-0 p-0 h-100 bnb-extra-img-5">
+
                                 <img class="w-100 h-100 img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
                                     :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title">
                             </div>
@@ -136,8 +137,10 @@ export default {
                 <template v-for="image in apartment.images">
                     <div class="col m-0 p-0" v-if="image.is_main == false">
                         <img class="w-100 img-fluid object-fit-cover shadow bnb-extra-img"
+
                             :src="store.baseUrl + 'storage/' + image.path" :alt="image.title"
                             style="border-radius: 0.375rem;">
+
                     </div>
                 </template>
 
