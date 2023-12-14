@@ -40,23 +40,34 @@ export default {
 
                     const payload = {
                         apartment_id: this.apartment.id,
-                        ip: visitorIP,
+                        ip_address: visitorIP,
                         date: visitDate
                     }
 
                     console.log("Payload", payload);
 
+                    axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
+
+                        console.log(response.data.Message);
+
+                    })
+
                 })
                 .catch(error => {
-                    console.error(err.message);
+                    console.error('Error:', error);
                 });
         }
     },
 
     mounted() {
         this.getSingleApartment()
+        
+    },
+
+    updated() {
         this.getVisitorData()
     },
+
     components: {
         ContactForm
     }
