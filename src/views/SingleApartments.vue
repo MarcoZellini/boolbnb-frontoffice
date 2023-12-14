@@ -99,7 +99,7 @@ export default {
 
         <div class="mt-4 row p-2 flex-column flex-sm-row">
 
-            <div class="m-0 p-1 " :class="apartment.images.length == 5 ? 'col-12 col-sm-8' : 'col-12'">
+            <div class="m-0 p-0 " :class="apartment.images.length == 5 ? 'col-12 col-sm-8' : 'col-12'">
 
                 <!-- immagine se non trova immagini -->
                 <img class="w-100 object-fit-cover rounded-start bnb-main-img shadow "
@@ -117,11 +117,11 @@ export default {
 
             <!-- other images -->
             <template v-if="apartment.images && apartment.images.length > 1 && apartment.images.length === 5">
-                <div class="col col-sm-4 row align-items-center m-0 p-0">
+                <div class="col col-sm-4 row align-items-center m-0 p-0 bnb-img-row">
                     <template v-for="(image, i) in this.filteredImg" :key="i">
                         <template v-if="!image.is_main">
-                            <div class="col-6 m-0 p-1 h-50">
-                                <img class="h-100 w-100 img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
+                            <div class="col-6 m-0 p-0 h-100 bnb-extra-img-5">
+                                <img class="w-100 h-100 img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
                                     :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title">
                             </div>
                         </template>
@@ -130,10 +130,11 @@ export default {
                 </div>
             </template>
 
+            <!-- meno di 5 img  -->
             <div class="col row align-items-center m-0 p-0" v-if="apartment.images.length < 5">
 
                 <template v-for="image in apartment.images">
-                    <div class="col m-0 p-1" v-if="image.is_main == false">
+                    <div class="col m-0 p-0" v-if="image.is_main == false">
                         <img class="w-100 img-fluid object-fit-cover shadow bnb-extra-img"
                             :src="store.baseUrl + 'storage/' + image.path" :alt="image.title"
                             style="border-radius: 0.375rem;">

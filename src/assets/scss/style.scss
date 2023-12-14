@@ -354,6 +354,13 @@ Large	lg	≥992px
 Extra large	xl	≥1200px
 Extra extra large	xxl	≥1400px 
 */
+.bnb-main-img,
+.bnb-br-img,
+.bnb-extra-img,
+.bnb-mid-img,
+.bnb-tr-img {
+    border: 3px solid transparent;
+}
 
 @media screen and (max-width: 425px) {
 
@@ -361,25 +368,30 @@ Extra extra large	xxl	≥1400px
         width: 100% !important;
     }
 
+    .justify-content-xsm-center {
+        justify-content: center !important;
+    }
+
+    .bnb-img-row,
+    .bnb-extra-img-5 {
+        height: 150px !important;
+    }
+
 }
 
 @media screen and (max-width: 575.97px) {
 
+    .bnb-img-row,
+    .bnb-extra-img-5,
     .bnb-main-img,
     .bnb-extra-img {
-        max-height: 250px;
+        height: 200px;
         border-radius: 0.375rem !important;
     }
 
 }
 
 @media screen and (min-width: 575.98px) {
-
-    .bnb-main-img,
-    .bnb-extra-img {
-        max-height: 200px;
-    }
-
     .bnb-mid-img {
         border-radius: 0px !important;
     }
@@ -394,36 +406,87 @@ Extra extra large	xxl	≥1400px
         border-bottom-right-radius: 0.375rem !important;
     }
 
+    .bnb-extra-img-5 {
+        // border: 2px dotted #4b0be0;
+        height: 50% !important;
+
+        img {
+            height: 100% !important;
+        }
+    }
+
+    .bnb-extra-img-5 {
+        // border: 2px dotted #4b0be0;
+        height: 50% !important;
+
+        img {
+            height: 100% !important;
+        }
+    }
+
+    .bnb-img-row,
+    .bnb-main-img,
+    .bnb-extra-img,
+    .bnb-extra-img-5 {
+        height: 250px;
+        // border: 5px dotted #000000;
+    }
+
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 575.98px) {
 
+    .bnb-img-row,
     .bnb-main-img,
     .bnb-extra-img {
-        max-height: 250px;
+        height: 200px;
+        border-radius: 0.375rem !important;
+        // border: 2px dotted #0be01d;
+    }
+
+    .bnb-extra-img-5 {
+        // border: 1px solid saddlebrown;
+        height: 200px !important;
+    }
+
+}
+
+/*  */
+@media screen and (min-width: 768px) {
+
+    .bnb-img-row,
+    .bnb-main-img,
+    .bnb-extra-img {
+        height: 250px;
+        // border: 2px dotted #E00B41;
     }
 
 }
 
 @media screen and (min-width: 992px) {
 
+    .bnb-img-row,
     .bnb-main-img,
     .bnb-extra-img {
-        max-height: 345px;
+        height: 345px;
     }
 
 }
 
 @media screen and (min-width: 1200px) {
 
+    .bnb-img-row,
     .bnb-main-img,
     .bnb-extra-img {
-        max-height: 400px;
+        height: 400px;
+        // background-color: #000000;
     }
 
 }
 
 @media screen and (min-width: 1400px) {
+
+    .bnb-img-row,
     .bnb-main-img {
         height: 450px;
     }
