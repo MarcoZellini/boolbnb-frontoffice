@@ -36,7 +36,7 @@ export default {
 
                     const visitDate = new Date().toISOString().slice(0, 19).replace('T', ' ');;
 
-                    console.log("Visitor IP:", visitorIP, "Visit Date:", visitDate);
+                    // console.log("Visitor IP:", visitorIP, "Visit Date:", visitDate);
 
                     const payload = {
                         apartment_id: this.apartment.id,
@@ -44,11 +44,11 @@ export default {
                         date: visitDate
                     }
 
-                    console.log("Payload", payload);
+                    // console.log("Payload", payload);
 
                     axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
 
-                        console.log(response.data.Message);
+                        // console.log(response.data.message);
 
                     })
 
