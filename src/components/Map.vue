@@ -30,7 +30,7 @@ export default {
                 language: 'it-IT'
             });
 
-            new tt.Marker().setLngLat(lngLat).addTo(map);
+            new tt.Marker({ color: '#E00B41' }).setLngLat(lngLat).addTo(map);
             map.addControl(new tt.NavigationControl());
 
         });
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <template>
-    <div id="map" style="height: 500px;width: 100%;"></div>
+    <div id="map" class=" rounded bnb-shadow " style="height: 500px;width: 100%;"></div>
 </template>
 
 <style lang="scss" scoped>

@@ -56,10 +56,11 @@ export default {
                 <font-awesome-icon icon="fa-solid fa-bars" style="color: #e00b41;" />
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
 
-                <div class="d-flex align-items-center ms-auto">
+                <div
+                    class="d-flex flex-column align-items-start justify-content-start flex-md-row ms-auto justify-content-md-end ">
 
                     <router-link class="nav-link nav-link-bnb" to="/"
                         :class="this.currentRoute === '/' ? 'bnb-color-important' : ''">Home</router-link>

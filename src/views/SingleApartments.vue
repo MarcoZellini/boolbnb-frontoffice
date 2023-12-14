@@ -46,6 +46,9 @@ export default {
         getIcon(icon) {
             return store.baseUrl + icon;
         },
+        getPlaceholderImg(url) {
+            return new URL(`${url}`, import.meta.url).href
+        },
 
         async getVisitorData() {
             axios.get('https://api.ipify.org?format=json')
@@ -99,7 +102,8 @@ export default {
             <div class="m-0 p-1 " :class="apartment.images.length == 5 ? 'col-12 col-sm-8' : 'col-12'">
 
                 <!-- immagine se non trova immagini -->
-                <img class="w-100 object-fit-cover rounded-start bnb-main-img shadow " src="https://picsum.photos/200/300"
+                <img class="w-100 object-fit-cover rounded-start bnb-main-img shadow "
+                    :src="getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')"
                     v-if="this.apartment.images.length === 0" alt="Placeholder" style="border-radius: 0.375rem">
                 <!-- MAIN IMAGE -->
                 <div class="wrapper_images" v-for="image in apartment.images">
