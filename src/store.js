@@ -15,6 +15,7 @@ export const store = reactive({
     // Variabili per TomTom
     TomTomKey: 'QTQljhHM9rS4d2vJLMcDX9qzl8tyGA43',
     TomTomGeocodingUrl: 'https://api.tomtom.com/search/2/geocode/',
+    TomTomSearchUrl: 'https://api.tomtom.com/search/2/search/',
 
     // indirizzo da convertire in lat e long tramite TomTom
     // esempi: 'via venezia 5 padova', 'Viale Luigi Sturzo, 20154 Milano MI'
@@ -27,6 +28,11 @@ export const store = reactive({
     minRooms: 1,
     minBeds: 1,
     minServices: [],
+
+    // array dei suggerimenti di indirizzo
+    changeTimeout: null,
+    suggestedAddress: [],
+    isAddressListVisible: false,
 
     // array degli appartamenti
     apartmentsIndex: '',
@@ -64,7 +70,32 @@ export const store = reactive({
 
     },
 
+    // chiamata AJAX a TomTom per indirizzi suggeriti
+    searchAddress() {
+
+        this.isAddressListVisible = true
+        this.suggestedAddress = [];
+
+        axios.get(this.TomTomSearchUrl + this.inputAddress + '.json?countrySet=IT&key=' + this.TomTomKey)
+            .then(response => {
+                console.log(response.data.results)
+                const results = response.data.results;
+                results.forEach(result => {
+                    if (result.address.freeformAddress) {
+                        this.suggestedAddress.push(result.address.freeformAddress)
+                    } else if (result.address.municipality) {
+                        this.suggestedAddress.push(result.address.municipality + ',' + result.address.country)
+                    } else {
+                        this.suggestedAddress.push(result.address.countrySecondarySubdivision + ',' + result.address.country)
+                    }
+                })
+                console.log(this.suggestedAddress)
+            })
+    },
+
     async searchApartments() {
+
+        this.isAddressListVisible = false;
 
         if (this.inputAddress != '') {
 
