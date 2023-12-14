@@ -16,8 +16,8 @@ export default {
             latitude: 0.0,
             longitude: 0.0,
             loading: false,
-            styleClasses: ['', 'bnb-mid-img', 'bnb-tr-img', 'bnb-mid-img', 'bnb-br-img'],
-
+            styleClasses: ['bnb-mid-img', 'bnb-tr-img', 'bnb-mid-img', 'bnb-br-img'],
+            filteredImg: [],
         }
     },
     components: {
@@ -33,6 +33,8 @@ export default {
                     this.longitude = this.apartment.longitude
                     this.address = this.apartment.address
 
+                    this.filteredImg = this.apartment.images.filter(image => image.is_main === 0)
+
                     this.loading = true
                     console.log('lat' + this.latitude, 'lon' + this.longitude);
                     console.log(this.apartment);
@@ -44,7 +46,6 @@ export default {
         getIcon(icon) {
             return store.baseUrl + icon;
         },
-
 
         async getVisitorData() {
             axios.get('https://api.ipify.org?format=json')
@@ -78,16 +79,13 @@ export default {
 
     mounted() {
         this.getSingleApartment()
-        
+
     },
 
     updated() {
         this.getVisitorData()
     },
 
-    components: {
-        ContactForm
-    }
 
 }
 </script>
@@ -116,7 +114,7 @@ export default {
             <!-- other images -->
             <template v-if="apartment.images && apartment.images.length > 1 && apartment.images.length === 5">
                 <div class="col col-sm-4 row align-items-center m-0 p-0">
-                    <template v-for="(image, i) in apartment.images" :key="i">
+                    <template v-for="(image, i) in this.filteredImg" :key="i">
                         <template v-if="!image.is_main">
                             <div class="col-6 m-0 p-1 h-50">
                                 <img class="h-100 w-100 img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
