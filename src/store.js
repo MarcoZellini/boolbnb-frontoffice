@@ -71,7 +71,7 @@ export const store = reactive({
     // chiamata AJAX a TomTom per indirizzi suggeriti
     searchAddress() {
 
-        store.isAddressListVisible = true
+        this.isAddressListVisible = true
         this.suggestedAddress = [];
 
         axios.get(this.TomTomSearchUrl + this.inputAddress + '.json?countrySet=IT&key=' + this.TomTomKey)

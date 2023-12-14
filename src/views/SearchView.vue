@@ -48,12 +48,21 @@ export default {
                         class="w-50 rounded-pill border-1 shadow" id="address" list="suggested_address" @input="onChange()"
                         autocomplete="off">
 
-                    <datalist id="suggested_address">
-                        <option :value="suggestedAddress" v-for="suggestedAddress in store.suggestedAddress"
-                            v-if="store.isAddressListVisible"></option>
-
+                    <datalist id="suggested_address" v-if="store.isAddressListVisible">
+                        <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
+                            {{ suggestedAddress }}
+                        </option>
                     </datalist>
                 </div>
+                <!-- TEST
+                    <div>
+                        suggerimenti visibili? {{ store.isAddressListVisible }} <br>
+                        lista suggerimenti:
+                        <div v-for="suggestedAddress in store.suggestedAddress">
+                            {{ suggestedAddress }}
+                        </div>
+                    </div>
+                -->
 
                 <!-- STANZE -->
                 <div class="col-md-3">
