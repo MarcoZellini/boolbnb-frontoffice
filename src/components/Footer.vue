@@ -49,6 +49,7 @@ export default {
             store.minRooms = 1;
             store.minBeds = 1;
             store.maxRadius = 20;
+            store.minServices = [];
             store.inputAddress = city;
             store.searchApartments();
             this.$router.push('search')
