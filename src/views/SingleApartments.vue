@@ -29,11 +29,33 @@ export default {
             return store.baseUrl + icon;
         },
 
+        async getVisitorData() {
+            axios.get('https://api.ipify.org?format=json')
+                .then(response => {
+                    const visitorIP = response.data.ip;
 
+                    const visitDate = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+
+                    console.log("Visitor IP:", visitorIP, "Visit Date:", visitDate);
+
+                    const payload = {
+                        apartment_id: this.apartment.id,
+                        ip: visitorIP,
+                        date: visitDate
+                    }
+
+                    console.log("Payload", payload);
+
+                })
+                .catch(error => {
+                    console.error(err.message);
+                });
+        }
     },
 
     mounted() {
         this.getSingleApartment()
+        this.getVisitorData()
     },
     components: {
         ContactForm
@@ -93,11 +115,8 @@ export default {
 
         </div>
 
-
-
         <div class="row row-cols-1">
             <h1>{{ apartment.title }}</h1>
-
 
             <!-- descrizione -->
             <div class="col col-md-6">
