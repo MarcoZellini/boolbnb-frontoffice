@@ -10,7 +10,8 @@ export const store = reactive({
     searchAPI: 'api/search',
     servicesAPI: 'api/services',
     viewsAPI: 'api/views',
-    
+    currentPage: 1,
+    totalPages: null,
 
     // Variabili per TomTom
     TomTomKey: 'QTQljhHM9rS4d2vJLMcDX9qzl8tyGA43',
@@ -45,9 +46,11 @@ export const store = reactive({
 
     async getApartments() {
 
-        await axios.get(this.baseUrl + this.apartmentApi)
+        await axios.get(this.baseUrl + this.apartmentApi + `?page=${this.currentPage}`)
             .then(response => {
                 this.apartmentsIndex = response.data.result.data;
+                this.totalPages = response.data.result.last_page;
+
                 console.log("Apartments Index:", this.apartmentsIndex);
 
             })
@@ -55,6 +58,19 @@ export const store = reactive({
                 console.error(err);
             })
 
+    },
+    nextPage() {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+            this.getApartments();
+        }
+    },
+
+    prevPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.getApartments();
+        }
     },
 
     async getServices() {
