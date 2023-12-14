@@ -113,11 +113,11 @@ export default {
 
             <!-- other images -->
             <template v-if="apartment.images && apartment.images.length > 1 && apartment.images.length === 5">
-                <div class="col col-sm-4 row align-items-center h-100 m-0 p-0">
+                <div class="col col-sm-4 row align-items-center m-0 p-0 ">
                     <template v-for="(image, i) in this.filteredImg" :key="i">
                         <template v-if="!image.is_main">
-                            <div class="col-6 m-0 p-1 h-50">
-                                <img class="w-100 h-100  img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
+                            <div class="col-6 m-0 p-1 bnb-extra-img-5">
+                                <img class="w-100 h-100 img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
                                     :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title">
                             </div>
                         </template>
@@ -129,10 +129,11 @@ export default {
             <div class="col row align-items-center m-0 p-0" v-if="apartment.images.length < 5">
 
                 <template v-for="image in apartment.images">
-                    <div class="col m-0 p-1 h-100" v-if="image.is_main == false">
-                        <img class="w-100 h-100 img-fluid object-fit-cover shadow bnb-extra-img"
+                    <div class="col m-0 p-1 bnb-extra-img-wrapper" v-if="image.is_main == false">
+                        <img class=" w-100 h-100 object-fit-cover shadow bnb-extra-img"
                             :src="store.baseUrl + 'storage/' + image.path" :alt="image.title"
                             style="border-radius: 0.375rem;">
+
                     </div>
                 </template>
 
