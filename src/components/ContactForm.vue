@@ -18,7 +18,8 @@ export default {
                 phone: '',
                 subject: '',
                 message: ''
-            }
+            },
+            loading: false,
         }
     },
     methods: {
@@ -33,7 +34,7 @@ export default {
                 }
             })
                 .then(response => {
-
+                    this.loading = true
                     this.message = '';
                     this.errors = [];
 
@@ -48,6 +49,8 @@ export default {
                             subject: '',
                             message: ''
                         }
+                        this.loading = false
+                        console.log(this.loading);
                     } else {
                         this.errors = response.data.errors;
                         console.log(this.errors);
@@ -141,9 +144,11 @@ export default {
                 </div>
 
             </div>
+
             <div class="d-flex align-items-center">
                 <button type="submit" class="d-flex align-items-center btn btn-bnb rounded-pill text-capitalize px-4 me-3">
-                    Invia<font-awesome-icon :icon="['fas', 'paper-plane']" class="ms-2" />
+                    <span v-if="this.loading">spedisco <font-awesome-icon :icon="['fas', 'paper-plane']" fade /></span>
+                    <span v-else>Invia<font-awesome-icon :icon="['fas', 'paper-plane']" class="ms-2" /></span>
                 </button>
                 <span v-if="this.message" class="text-success">
                     <font-awesome-icon :icon="['fas', 'check']" class="me-1" />

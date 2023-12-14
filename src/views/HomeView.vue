@@ -39,6 +39,15 @@ export default {
         <div class="container">
 
             <div class="row gx-sm-5 gy-2">
+                <div class="d-flex justify-content-end align-items-center px-4 my-2 gap-3 ">
+                    <button class="btn btn-bnb" @click="store.prevPage()"
+                        :disabled="store.currentPage === 1">Precedente</button>
+
+                    <span>{{ store.currentPage }}</span>
+
+                    <button class="btn btn-bnb" @click="store.nextPage()"
+                        :disabled="store.currentPage === store.totalPages">Successivo</button>
+                </div>
 
                 <!-- CARD COMPONENT -->
                 <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsIndex" />

@@ -150,7 +150,7 @@ export default {
                 <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
                     <ApartmentCard :apartment="apartment" v-for="     apartment      in      store.apartmentsFound     " />
                 </div>
-                <div v-else>
+                <div v-else class="mb-4">
                     La ricerca non ha restituito risultati
                 </div>
             </div>
