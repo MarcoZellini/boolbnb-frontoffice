@@ -52,7 +52,7 @@ export default {
 
             <div class="card border-0 m-0 h-100 bnb-apartment-card">
 
-                <div :id="'carousel-' + apartment.slug" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                <div :id="'carousel-' + apartment.slug" class="carousel slide carousel-fade"
                     v-if="apartment.images.length > 1">
 
                     <div class="carousel-inner">
