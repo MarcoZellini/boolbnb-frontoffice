@@ -333,7 +333,7 @@ output {
 input[type="search"] {
     padding: 0.5rem;
     padding-left: 1rem;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="black" stroke-width="2"><circle cx="7" cy="7" r="6" /><path d="M11 11 L15 15" /></svg>');
+    //background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="black" stroke-width="2"><circle cx="7" cy="7" r="6" /><path d="M11 11 L15 15" /></svg>');
     background-size: 0.7em;
     background-repeat: no-repeat;
     background-position: right 1rem center;
@@ -475,6 +475,7 @@ Extra extra large	xxl	≥1400px
 }
 
 @media screen and (min-width: 768px) {
+
     .bnb-img-row,
     .bnb-extra-img-wrapper,
     .bnb-main-img,
@@ -496,6 +497,7 @@ Extra extra large	xxl	≥1400px
 }
 
 @media screen and (min-width: 1200px) {
+
     .bnb-extra-img-wrapper,
     .bnb-img-row,
     .bnb-main-img,
