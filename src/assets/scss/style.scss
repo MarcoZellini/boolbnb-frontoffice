@@ -11,6 +11,10 @@
     color: $bnb-primary !important;
 }
 
+.shaodw-custom {
+    filter: drop-shadow(0 0 20px $bnb-secondary ) !important;
+}
+
 /*#region map*/
 
 /*#endregion map  */
@@ -475,6 +479,7 @@ Extra extra large	xxl	≥1400px
 }
 
 @media screen and (min-width: 768px) {
+
     .bnb-img-row,
     .bnb-extra-img-wrapper,
     .bnb-main-img,
@@ -496,6 +501,7 @@ Extra extra large	xxl	≥1400px
 }
 
 @media screen and (min-width: 1200px) {
+
     .bnb-extra-img-wrapper,
     .bnb-img-row,
     .bnb-main-img,

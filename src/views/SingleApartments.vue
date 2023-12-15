@@ -96,19 +96,18 @@ export default {
 
 <template>
     <div class="container my-4">
-
         <div class="mt-4 row p-2 flex-column flex-sm-row">
 
             <div class="m-0 p-0 " :class="apartment.images.length == 5 ? 'col-12 col-sm-8' : 'col-12'">
 
                 <!-- immagine se non trova immagini -->
-                <img class="w-100 object-fit-cover rounded-start bnb-main-img shadow "
+                <img class="w-100 object-fit-cover rounded-start bnb-main-img shaodw-custom "
                     :src="getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')"
                     v-if="this.apartment.images.length === 0" alt="Placeholder" style="border-radius: 0.375rem">
                 <!-- MAIN IMAGE -->
                 <div class="wrapper_images" v-for="image in apartment.images">
                     <div class="wrappper" v-if="image.is_main === 1">
-                        <img class="w-100 h-100 object-fit-cover rounded-start bnb-main-img shadow "
+                        <img class="w-100 object-fit-cover rounded-start bnb-main-img shaodw-custom "
                             :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title"
                             :style="apartment.images.length < 5 ? 'border-radius: 0.375rem' : ''">
                     </div>
@@ -121,9 +120,9 @@ export default {
                     <template v-for="(image, i) in this.filteredImg" :key="i">
                         <template v-if="!image.is_main">
                             <div class="col-6 m-0 p-0 h-100 bnb-extra-img-5">
-
-                                <img class="w-100 h-100 img-fluid object-fit-cover rounded shadow" :class="styleClasses[i]"
-                                    :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title">
+                                <img class="w-100 h-100 img-fluid object-fit-cover rounded shaodw-custom"
+                                    :class="styleClasses[i]" :src="store.baseUrl + 'storage/' + image.path"
+                                    :alt="apartment.title">
                             </div>
                         </template>
                         <div v-else class="d-none"></div>
@@ -136,11 +135,9 @@ export default {
 
                 <template v-for="image in apartment.images">
                     <div class="col m-0 p-0" v-if="image.is_main == false">
-                        <img class="w-100 img-fluid object-fit-cover shadow bnb-extra-img"
-
+                        <img class="w-100 img-fluid object-fit-cover shaodw-custom bnb-extra-img"
                             :src="store.baseUrl + 'storage/' + image.path" :alt="image.title"
                             style="border-radius: 0.375rem;">
-
                     </div>
                 </template>
 
