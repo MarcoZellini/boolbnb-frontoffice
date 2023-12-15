@@ -65,7 +65,7 @@ export default {
                     <router-link class="nav-link nav-link-bnb" to="/"
                         :class="this.currentRoute === '/' ? 'bnb-color-important' : ''">Home</router-link>
 
-                    <router-link class="nav-link nav-link-bnb" to="search"
+                    <router-link class="nav-link nav-link-bnb" to="/search"
                         :class="this.currentRoute === '/search' ? 'bnb-color-important' : ''">Ricerca Avanzata</router-link>
 
                     <a class="nav-link nav-link-bnb" href="http://127.0.0.1:8000/">Vai alla Dashboard</a>

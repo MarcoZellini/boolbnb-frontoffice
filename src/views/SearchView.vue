@@ -25,6 +25,9 @@ export default {
                 }, 500);
             }
         },
+        test() {
+            console.log('ciao')
+        }
 
     },
     mounted() {
@@ -43,7 +46,7 @@ export default {
             <div class="row row-cols-1 gx-5 gy-5 justify-content-center">
 
                 <!-- BARRA RICERCA -->
-                <div class="col d-flex justify-content-center">
+                <div class="col d-flex justify-content-center align-items-center">
                     <input type="search" v-model="store.inputAddress" placeholder="Cerca su BoolBnb..."
                         class="w-50 rounded-pill border-1 shadow" id="address" list="suggested_address" @input="onChange()"
                         autocomplete="off">
@@ -53,15 +56,47 @@ export default {
                             {{ suggestedAddress }}
                         </option>
                     </datalist>
-                </div>
 
-                <!-- BOTTONE OFF CANVAS FILTRI -->
-                <div class="col d-flex justify-content-center">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <!-- BOTTONE RICERCA -->
+                    <button type="submit"
+                        class="d-flex align-items-center btn btn-bnb rounded-pill text-capitalize px-4 ms-3">
+                        Cerca
+                    </button>
+
+                    <!-- BOTTONE OFF CANVAS FILTRI -->
+                    <button class="d-flex align-items-center btn btn-bnb rounded-pill text-capitalize px-4 ms-3"
+                        type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                        aria-controls="offcanvasRight">
                         Filtri
                     </button>
+
                 </div>
+
+                <!-- TEST SUGGERIMENTI INDIRIZZO
+                <div class="col d-flex justify-content-center dropdown">
+                    <input type="search" v-model="store.inputAddress" placeholder="Cerca su BoolBnb..."
+                        class="w-50 rounded-pill border-1 shadow" id="address" list="suggested_address" @input="onChange()"
+                        autocomplete="off" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                -->
 
                 <!-- OFF-CANVAS FILTRI -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
@@ -153,6 +188,15 @@ export default {
 
                             </div>
 
+                            <div class="col">
+                                <!-- BOTTONE RICERCA -->
+                                <button type="submit"
+                                    class="d-flex align-items-center btn btn-bnb rounded-pill text-capitalize px-4 ms-3"
+                                    data-bs-dismiss="offcanvas" aria-label="Close">
+                                    Cerca
+                                </button>
+                            </div>
+
                         </div>
 
                     </div>
@@ -168,7 +212,7 @@ export default {
         <div class="container mt-4">
             <div v-if="store.inputAddress != '' || store.apartmentsFound.length >= 0">
                 <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
-                    <ApartmentCard :apartment="apartment" v-for="     apartment      in      store.apartmentsFound     " />
+                    <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsFound" />
                 </div>
                 <div v-else class="mb-4">
                     La ricerca non ha restituito risultati
