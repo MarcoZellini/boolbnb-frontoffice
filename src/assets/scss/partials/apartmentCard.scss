@@ -40,4 +40,17 @@
     background-image: none;
 }
 
+.carousel-indicators button {
+    width: 7px;
+    height: 7px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 0 4px;
+}
+
+.carousel-indicators button.active {
+    background-color: #fffffff1;
+}
+
 /*#endregion CAROUSEL */

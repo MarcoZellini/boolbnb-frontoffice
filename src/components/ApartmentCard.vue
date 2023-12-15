@@ -75,15 +75,17 @@ export default {
                     </div>
 
                     <!-- INDICATORS -->
-                    <!-- 
                     <div class="carousel-indicators">
                         <template v-for="(image, i) in apartment.images">
-                            <button type="button" :data-bs-target="'#carousel-' + apartment.slug"
-                                :data-bs-slide-to="(i + 1)" :class="i === 0 ? 'active' : ''" aria-current="true"
-                                :aria-label="'Slide ' + (i + 1)"></button>
+                            <button type="button" :data-bs-target="'#carousel-' + apartment.slug" :data-bs-slide-to="(i)"
+                                :class="image.is_main === 1 ? 'active' : ''" aria-current="true"
+                                :aria-label="'Slide ' + (i)">
+
+                                <!-- <font-awesome-icon icon="fa-solid fa-circle" style="color: #fffffff1;" /> -->
+
+                            </button>
                         </template>
-                    </div> 
-                    -->
+                    </div>
 
                     <!-- CAROUSEL CONTROLS -->
                     <button class="carousel-control-prev" type="button" :data-bs-target="'#carousel-' + apartment.slug"
