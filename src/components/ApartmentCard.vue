@@ -52,8 +52,73 @@ export default {
 
             <div class="card border-0 m-0 h-100 bnb-apartment-card">
 
+                <div :id="'carousel-' + apartment.slug" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                    v-if="apartment.images.length > 1">
+
+                    <div class="carousel-inner">
+
+                        <!-- IMAGES -->
+                        <template v-for="image in apartment.images">
+                            <div class="carousel-item active bnb-thumb-wrapper" v-if="image.is_main">
+                                <img :src="store.baseUrl + 'storage/' + image.path"
+                                    class="d-block rounded bnb-shadow bnb-apt-thumb"
+                                    :alt="'img-' + apartment.slug + '-' + image.id">
+                            </div>
+
+                            <div class="carousel-item bnb-thumb-wrapper" v-else>
+                                <img :src="store.baseUrl + 'storage/' + image.path"
+                                    class="d-block rounded bnb-shadow bnb-apt-thumb"
+                                    :alt="'img-' + apartment.slug + '-' + image.id">
+                            </div>
+                        </template>
+
+                    </div>
+
+                    <!-- INDICATORS -->
+                    <!-- 
+                    <div class="carousel-indicators">
+                        <template v-for="(image, i) in apartment.images">
+                            <button type="button" :data-bs-target="'#carousel-' + apartment.slug"
+                                :data-bs-slide-to="(i + 1)" :class="i === 0 ? 'active' : ''" aria-current="true"
+                                :aria-label="'Slide ' + (i + 1)"></button>
+                        </template>
+                    </div> 
+                    -->
+
+                    <!-- CAROUSEL CONTROLS -->
+                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carousel-' + apartment.slug"
+                        data-bs-slide="prev">
+
+                        <span class="carousel-control-prev-icon fs-2 d-flex align-items-center ms-2"
+                            aria-hidden="true"><font-awesome-icon icon="fa-solid fa-circle-chevron-left"
+                                style="color: #fffffff1;" /></span>
+                        <span class="visually-hidden">Precedente</span>
+
+                    </button>
+
+                    <button class="carousel-control-next" type="button" :data-bs-target="'#carousel-' + apartment.slug"
+                        data-bs-slide="next">
+
+                        <span class="carousel-control-next-icon fs-2 d-flex align-items-center me-2"
+                            aria-hidden="true"><font-awesome-icon icon="fa-solid fa-circle-chevron-right"
+                                style="color: #fffffff1;" /></span>
+
+                        <span class="visually-hidden">Successiva</span>
+                    </button>
+
+                </div>
+
+                <!-- PLACEHOLDER -->
+                <div class="bnb-thumb-wrapper" v-else>
+                    <img :src="getMainImagePath(apartment.images)" class="d-block rounded bnb-shadow bnb-apt-thumb"
+                        :alt="'img-' + apartment.slug + '-' + apartment.id">
+                </div>
+
+                <!-- ORIGINAL CODE -->
+                <!--                 
                 <img class="card-img-top rounded bnb-shadow bnb-apt-thumb" :src="getMainImagePath(apartment.images)"
-                    alt="Title" />
+                :alt="apartment.slug" /> 
+                -->
 
                 <div class="card-body p-0 py-1">
 
