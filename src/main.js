@@ -20,8 +20,10 @@ import { faPeopleRoof } from '@fortawesome/free-solid-svg-icons'
 import { faRestroom } from '@fortawesome/free-solid-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faBars, faMapPin, faBed, faPeopleRoof, faRestroom, faPaperPlane, faCheck)
+library.add(faBars, faMapPin, faBed, faPeopleRoof, faRestroom, faPaperPlane, faCheck, faChevronCircleLeft, faChevronCircleRight)
 
 createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

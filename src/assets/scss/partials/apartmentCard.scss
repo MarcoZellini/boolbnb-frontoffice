@@ -10,7 +10,34 @@
 
 }
 
-.bnb-apt-thumb {
-    aspect-ratio: 1/1;
-    object-fit: cover;
+/*#region CAROUSEL */
+
+.bnb-thumb-wrapper {
+
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+
+    .bnb-apt-thumb {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none;
+}
+
+/*#endregion CAROUSEL */
