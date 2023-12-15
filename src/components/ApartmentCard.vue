@@ -80,9 +80,6 @@ export default {
                             <button type="button" :data-bs-target="'#carousel-' + apartment.slug" :data-bs-slide-to="(i)"
                                 :class="image.is_main === 1 ? 'active' : ''" aria-current="true"
                                 :aria-label="'Slide ' + (i)">
-
-                                <!-- <font-awesome-icon icon="fa-solid fa-circle" style="color: #fffffff1;" /> -->
-
                             </button>
                         </template>
                     </div>
