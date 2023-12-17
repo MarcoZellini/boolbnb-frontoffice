@@ -39,14 +39,34 @@ export default {
         <div class="container">
 
             <div class="row gx-sm-5 gy-2">
-                <div class="d-flex justify-content-end align-items-center px-4 my-2 gap-3 ">
-                    <button class="btn btn-bnb" @click="store.prevPage()"
-                        :disabled="store.currentPage === 1">Precedente</button>
+                <div class="d-flex justify-content-end align-items-center px-4 my-2 gap-3  ">
 
-                    <span>{{ store.currentPage }}</span>
+                    <ul class="d-flex align-items-center list-unstyled  rounded-pill">
 
-                    <button class="btn btn-bnb" @click="store.nextPage()"
-                        :disabled="store.currentPage === store.totalPages">Successivo</button>
+                        <li class="btn_pagination border rounded-start-4 py-1 px-2 " @click="store.prevPage()"
+                            :disabled="store.currentPage === 1">
+
+                            <span>
+                                Precedente
+                            </span>
+                        </li>
+
+                        <li class="border p-1 cursor-pointer" v-for="(page, i) in store.totalPages"
+                            :class="store.currentPage === i + 1 ? 'current_page' : ''" @click="store.goToPage(i + 1)">
+                            <span class="px-1">
+                                {{ i + 1 }}
+                            </span>
+                        </li>
+
+                        <li class="btn_pagination border py-1 px-2 rounded-end-4" @click="store.nextPage()"
+                            :disabled="store.currentPage === store.totalPages">
+
+                            <span>
+                                Successivo
+                            </span>
+                        </li>
+                    </ul>
+
                 </div>
 
                 <!-- CARD COMPONENT -->

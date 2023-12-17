@@ -13,26 +13,41 @@ export default {
     props: [
         'latitude',
         'longitude',
+        'apartments'
     ],
-
     setup(props) {
-
-
         let map = null;
+        let lngLat = null;
+        let zoomMap = null
+
         onMounted(() => {
-            const lngLat = new tt.LngLat(props.longitude, props.latitude);
-            /*  console.log(lngLat); */
+            if (props.apartments) {
+                lngLat = new tt.LngLat(props.apartments[0].longitude, props.apartments[0].latitude);
+                zoomMap = 7
+            } else {
+                lngLat = new tt.LngLat(props.longitude, props.latitude);
+                zoomMap = 12
+            }
             map = tt.map({
                 key: 'vPuUkOEvt9S93r8E98XRbrHJJG1Mz6Tr',
                 container: 'map',
                 center: lngLat,
-                zoom: 15,
-                language: 'it-IT'
+                zoom: zoomMap,
+                language: 'it-IT',
             });
 
-            new tt.Marker({ color: '#E00B41' }).setLngLat(lngLat).addTo(map);
-            map.addControl(new tt.NavigationControl());
+            if (props.apartments) {
+                props.apartments.forEach((apartment) => {
+                    const lngLat = new tt.LngLat(apartment.longitude, apartment.latitude);
+                    new tt.Marker({ color: '#E00B41' }).setLngLat(lngLat).addTo(map);
 
+                });
+            } else {
+                const lngLat = new tt.LngLat(props.longitude, props.latitude);
+                new tt.Marker({ color: '#E00B41' }).setLngLat(lngLat).addTo(map);
+            }
+
+            map.addControl(new tt.NavigationControl());
         });
 
         return { map };
