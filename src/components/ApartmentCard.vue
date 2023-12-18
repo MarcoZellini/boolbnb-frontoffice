@@ -11,7 +11,8 @@ export default {
     data() {
 
         return {
-            store
+            store,
+            arrangedImgs: '',
         }
 
     },
@@ -35,7 +36,7 @@ export default {
             }
         }
 
-    },
+    }
 
 }
 
@@ -52,7 +53,7 @@ export default {
 
             <div class="card border-0 m-0 h-100 bnb-apartment-card">
 
-                <div :id="'carousel-' + apartment.slug" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                <div :id="'carousel-' + apartment.slug" class="carousel slide carousel-fade"
                     v-if="apartment.images.length > 1">
 
                     <div class="carousel-inner">
@@ -75,15 +76,14 @@ export default {
                     </div>
 
                     <!-- INDICATORS -->
-                    <!-- 
                     <div class="carousel-indicators">
                         <template v-for="(image, i) in apartment.images">
-                            <button type="button" :data-bs-target="'#carousel-' + apartment.slug"
-                                :data-bs-slide-to="(i + 1)" :class="i === 0 ? 'active' : ''" aria-current="true"
-                                :aria-label="'Slide ' + (i + 1)"></button>
+                            <button type="button" :data-bs-target="'#carousel-' + apartment.slug" :data-bs-slide-to="(i)"
+                                :class="image.is_main === 1 ? 'active' : ''" aria-current="true"
+                                :aria-label="'Slide ' + (i)">
+                            </button>
                         </template>
-                    </div> 
-                    -->
+                    </div>
 
                     <!-- CAROUSEL CONTROLS -->
                     <button class="carousel-control-prev" type="button" :data-bs-target="'#carousel-' + apartment.slug"
