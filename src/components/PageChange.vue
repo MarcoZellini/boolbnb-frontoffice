@@ -14,7 +14,7 @@ export default {
         nextPage() {
             if (store.currentPage < store.totalPages) {
                 store.currentPage++;
-                console.log(store.currentPage)
+                //console.log(store.currentPage)
                 this.$emit('fetchData');
             }
         },
@@ -22,7 +22,7 @@ export default {
         prevPage() {
             if (store.currentPage > 1) {
                 store.currentPage--;
-                console.log(store.currentPage)
+                //console.log(store.currentPage)
                 this.$emit('fetchData');
 
             }
@@ -30,7 +30,7 @@ export default {
 
         goToPage(page) {
             store.currentPage = page
-            console.log(store.currentPage)
+            //console.log(store.currentPage)
             this.$emit('fetchData');
 
         },
