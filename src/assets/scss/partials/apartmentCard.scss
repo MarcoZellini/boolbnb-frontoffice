@@ -33,6 +33,35 @@
         object-fit: cover;
     }
 
+    .bnb-sponsor {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $bnb-light;
+        font-weight: bold;
+        margin-top: 0.5rem;
+
+        // RIBBON
+        --s: 20px;
+        --d: 8px;
+        --c: 8px;
+
+        padding: 0 calc(var(--s) + var(--d)) var(--d);
+
+        background:
+            conic-gradient(at left var(--s) bottom var(--d),
+                #0000 25%, #0008 0 37.5%, #0004 0) 0 /50% no-repeat,
+            conic-gradient(at right var(--s) bottom var(--d),
+                #0004 62.5%, #0008 0 75%, #0000 0) 100%/50% no-repeat;
+        clip-path: polygon(0 var(--d), var(--s) var(--d), var(--s) 0, calc(100% - var(--s)) 0, calc(100% - var(--s)) var(--d), 100% var(--d), calc(100% - var(--c)) calc(50% + var(--d)/2), 100% 100%, calc(100% - var(--s) - var(--d)) 100%, calc(100% - var(--s) - var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) 100%, 0 100%, var(--c) calc(50% + var(--d)/2));
+
+        background-color: goldenrod;
+
+    }
+
+
+
 }
 
 .carousel-control-prev-icon,
