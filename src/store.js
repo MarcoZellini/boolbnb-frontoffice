@@ -61,27 +61,6 @@ export const store = reactive({
 
     },
 
-    nextPage() {
-        if (this.currentPage < this.totalPages) {
-            this.currentPage++;
-            this.getApartments();
-        }
-    },
-
-    prevPage() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
-            this.getApartments();
-
-        }
-    },
-
-    goToPage(page) {
-        this.currentPage = page
-        this.getApartments();
-
-    },
-
     async getServices() {
 
         await axios.get(this.baseUrl + this.servicesAPI)
@@ -135,7 +114,7 @@ export const store = reactive({
                 });
 
             // chiamata AJAX al backend per filtrare gli appartamenti
-            await axios.get(this.baseUrl + this.searchAPI,
+            await axios.get(this.baseUrl + this.searchAPI + `?page=${this.currentPage}`,
                 {
                     params:
                     {
@@ -151,13 +130,14 @@ export const store = reactive({
                 .then(response => {
                     this.apartmentsFound = response.data.result.data;
                     this.apartmentLoaded = true
+                    this.totalPages = response.data.result.last_page;
                 })
                 .catch(err => {
                     console.log(err.message)
                 });
             //console.log('Appartamenti filtrati', this.apartmentsFound)
 
-            console.log(this.minServices)
+            //console.log(this.minServices)
 
             //filtraggio appartamenti per servizi
             this.apartmentsFound = this.apartmentsFound.filter(apartment => {
