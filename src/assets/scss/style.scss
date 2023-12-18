@@ -7,8 +7,13 @@
     color: $bnb-primary ;
 }
 
+
 .bnb-color-important {
     color: $bnb-primary !important;
+}
+
+.bnb-bg-color-important {
+    background-color: $bnb-primary !important;
 }
 
 .shaodw-custom {
@@ -79,6 +84,48 @@ body {
 
 .bnb-shadow {
     box-shadow: 0px 1px 5px $bnb-secondary;
+}
+
+.bnb-searchbox-elements {
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+        color: $bnb-accent;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+}
+
+.reset_btn {
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+.btn_pagination {
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        border-color: $bnb-primary !important;
+        background-color: $bnb-primary;
+        color: $bnb-light;
+    }
+}
+
+.current_page {
+    background-color: $bnb-primary;
+    border-color: $bnb-primary !important;
+    color: $bnb-light;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 /*#endregion GLOBAL RULES*/

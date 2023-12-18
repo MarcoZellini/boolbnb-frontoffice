@@ -2,17 +2,21 @@
 
 import { store } from '../store.js'
 
+
 import ApartmentCard from '../components/ApartmentCard.vue';
+import Map from '../components/Map.vue';
 
 export default {
     name: 'SearchView',
     components: {
         ApartmentCard,
+        Map
     },
 
     data() {
         return {
             store,
+
         }
     },
     methods: {
@@ -25,6 +29,7 @@ export default {
                 }, 500);
             }
         },
+
         test() {
             console.log('ciao')
         }
@@ -34,45 +39,68 @@ export default {
         store.getServices();
     }
 }
-
 </script>
 
 <template>
-    <div class="container">
+    <form action="" class=" bnb-jumbotron" @submit.stop.prevent="store.searchApartments()">
 
-        <form action="" class="py-4" @submit.stop.prevent="store.searchApartments()">
+        <div class="h-100 d-flex justify-content-center align-items-center ">
+            <div class="col-11 col-sm-10 col-lg-8 h-100 d-flex justify-content-center align-items-center">
+                <!-- BARRA RICERCA E FILTRI -->
+                <div class="w-100 d-flex ">
+                    <div class="w-100">
+                        <input @change="store.searchApartments()" type="search" v-model="store.inputAddress"
+                            placeholder="Cerca su BoolBnb..." class="form-control border-0 w-100 rounded-start-5  py-2"
+                            id="address" list="suggested_address" @input="onChange()"
+                            @keyup.enter="store.searchApartments()" autocomplete="off"
+                            form="searchForm"><!-- per la searchbox v2 rounded-end-5 -->
 
-            <!-- BARRA RICERCA E FILTRI -->
-            <div class="row row-cols-1 gx-5 gy-5 justify-content-center">
+                        <datalist id="suggested_address" v-if="store.isAddressListVisible">
+                            <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
+                                {{ suggestedAddress }}
+                            </option>
+                        </datalist>
 
-                <!-- BARRA RICERCA -->
-                <div class="col-6 d-flex justify-content-between align-items-center rounded shadow pe-0">
-                    <input type="search" v-model="store.inputAddress" placeholder="Cerca su BoolBnb..."
-                        class="form-control border-0" id="address" list="suggested_address" @input="onChange()"
-                        autocomplete="off">
+                    </div>
 
-                    <datalist id="suggested_address" v-if="store.isAddressListVisible">
-                        <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
-                            {{ suggestedAddress }}
-                        </option>
-                    </datalist>
 
-                    <div class="btn-group" role="group">
-                        <!-- BOTTONE RICERCA -->
-                        <button type="submit" class="d-flex align-items-center btn btn-bnb text-capitalize px-4 rounded-0">
-                            Cerca
+                    <div class="bottoni d-flex align-items-center  rounded-end-5  bg-white" role="group">
+                        <button
+                            class="d-flex bnb-searchbox-elements reset_btn align-items-center  h-100 px-4 p-2 rounded rounded-circle bg-white"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <font-awesome-icon :icon="['fas', 'sliders']" />
                         </button>
 
-                        <!-- BOTTONE OFF CANVAS FILTRI -->
-                        <button class="d-flex align-items-center btn btn-bnb text-capitalize px-4" type="button"
-                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                            Filtri
+                        <button type="submit"
+                            class="d-flex align-items-center bnb-searchbox-elements reset_btn px-4 p-2 rounded-circle bg-white  mx-2"
+                            data-bs-dismiss="offcanvas" aria-label="Close">
+                            <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
                         </button>
                     </div>
 
+                    <!-- searchbox v2   da rivedere in caso
+                         <div class="bottoni d-flex align-items-center ms-2" role="group">
+                        <button
+                            class="d-flex reset_btn align-items-center justify-content-center h-100 p-2 rounded-circle bnb-bg-color-important text-white me-2"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+                            style="width: 40px; height: 40px;">
+                            <font-awesome-icon :icon="['fas', 'sliders']" />
+                        </button>
+                        <button
+                            class="d-flex reset_btn align-items-center justify-content-center h-100 p-2 rounded-circle bnb-bg-color-important text-white"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+                            style="width: 40px; height: 40px;">
+                            <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+
+                        </button>
+                    </div>
+ -->
                 </div>
 
-                <!-- TEST SUGGERIMENTI INDIRIZZO
+
+            </div>
+
+            <!-- TEST SUGGERIMENTI INDIRIZZO
                 <div class="col d-flex justify-content-center dropdown">
                     <input type="search" v-model="store.inputAddress" placeholder="Cerca su BoolBnb..."
                         class="w-50 rounded-pill border-1 shadow" id="address" list="suggested_address" @input="onChange()"
@@ -82,9 +110,9 @@ export default {
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-
+    
                 </div>
-
+    
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -97,9 +125,6 @@ export default {
                     </ul>
                 </div>
                 -->
-
-            </div>
-
             <!-- OFF-CANVAS FILTRI -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
@@ -202,8 +227,18 @@ export default {
 
                 </div>
             </div>
+        </div>
 
-        </form>
+    </form>
+
+    <div class="container">
+
+        <div v-if="store.apartmentLoaded && store.apartmentsFound.length > 0" class="rounded bnb-shadow my-3"
+            style="height: 500px;width: 100%;">
+            <Map :apartments="store.apartmentsFound" />
+        </div>
+
+
 
         <hr>
 
@@ -213,16 +248,25 @@ export default {
                 <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
                     <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsFound" />
                 </div>
-                <div v-else class="mb-4">
+                <div v-else-if="store.apartmentLoaded && store.apartmentsFound.length === 0" class="mb-4">
                     La ricerca non ha restituito risultati
                 </div>
-            </div>
-            <div v-else>
-                Digitare un indirizzo o il nome di una città e premere invio
+                <div v-else class="mb-4">
+                    Digitare un indirizzo o il nome di una città e premere invio
+                </div>
             </div>
         </div>
 
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.bnb-jumbotron {
+    height: 500px;
+    /* guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato */
+    background-image: url('../assets/img/placeholders/jumbo4.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>

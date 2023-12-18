@@ -43,6 +43,7 @@ export const store = reactive({
 
     // array degli appartamenti filtrati
     apartmentsFound: [],
+    apartmentLoaded: false,
 
     async getApartments() {
 
@@ -59,6 +60,7 @@ export const store = reactive({
             })
 
     },
+
     nextPage() {
         if (this.currentPage < this.totalPages) {
             this.currentPage++;
@@ -70,7 +72,14 @@ export const store = reactive({
         if (this.currentPage > 1) {
             this.currentPage--;
             this.getApartments();
+
         }
+    },
+
+    goToPage(page) {
+        this.currentPage = page
+        this.getApartments();
+
     },
 
     async getServices() {
@@ -94,7 +103,7 @@ export const store = reactive({
 
         axios.get(this.TomTomSearchUrl + this.inputAddress + '.json?countrySet=IT&key=' + this.TomTomKey)
             .then(response => {
-                console.log(response.data.results)
+                /*  console.log(response.data.results) */
                 const results = response.data.results;
                 results.forEach(result => {
                     if (result.address.freeformAddress) {
@@ -110,7 +119,7 @@ export const store = reactive({
     },
 
     async searchApartments() {
-
+        this.apartmentLoaded = false
         this.isAddressListVisible = false;
 
         if (this.inputAddress != '') {
@@ -141,6 +150,7 @@ export const store = reactive({
             )
                 .then(response => {
                     this.apartmentsFound = response.data.result;
+                    this.apartmentLoaded = true
                 })
                 .catch(err => {
                     console.log(err.message)
