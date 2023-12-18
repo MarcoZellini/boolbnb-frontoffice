@@ -2,21 +2,23 @@
 
 import { store } from '../store.js'
 
-
 import ApartmentCard from '../components/ApartmentCard.vue';
 import Map from '../components/Map.vue';
+import PageChange from '../components/PageChange.vue';
 
 export default {
     name: 'SearchView',
     components: {
         ApartmentCard,
-        Map
+        Map,
+        PageChange
     },
-
+    emits: [
+        'fetchData'
+    ],
     data() {
         return {
             store,
-
         }
     },
     methods: {
@@ -30,12 +32,9 @@ export default {
             }
         },
 
-        test() {
-            console.log('ciao')
-        }
-
     },
     mounted() {
+        store.currentPage = 1;
         store.getServices();
     }
 }
@@ -46,6 +45,7 @@ export default {
 
         <div class="h-100 d-flex justify-content-center align-items-center ">
             <div class="col-11 col-sm-10 col-lg-8 h-100 d-flex justify-content-center align-items-center">
+
                 <!-- BARRA RICERCA E FILTRI -->
                 <div class="w-100 d-flex ">
                     <div class="w-100">
@@ -63,7 +63,6 @@ export default {
 
                     </div>
 
-
                     <div class="bottoni d-flex align-items-center  rounded-end-5  bg-white" role="group">
                         <button
                             class="d-flex bnb-searchbox-elements reset_btn align-items-center  h-100 px-4 p-2 rounded rounded-circle bg-white"
@@ -78,7 +77,8 @@ export default {
                         </button>
                     </div>
 
-                    <!-- searchbox v2   da rivedere in caso
+                    <!-- 
+                        searchbox v2   da rivedere in caso
                          <div class="bottoni d-flex align-items-center ms-2" role="group">
                         <button
                             class="d-flex reset_btn align-items-center justify-content-center h-100 p-2 rounded-circle bnb-bg-color-important text-white me-2"
@@ -94,37 +94,12 @@ export default {
 
                         </button>
                     </div>
- -->
+                     -->
                 </div>
 
 
             </div>
 
-            <!-- TEST SUGGERIMENTI INDIRIZZO
-                <div class="col d-flex justify-content-center dropdown">
-                    <input type="search" v-model="store.inputAddress" placeholder="Cerca su BoolBnb..."
-                        class="w-50 rounded-pill border-1 shadow" id="address" list="suggested_address" @input="onChange()"
-                        autocomplete="off" data-bs-toggle="dropdown" aria-expanded="false">
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-    
-                </div>
-    
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-                -->
             <!-- OFF-CANVAS FILTRI -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
@@ -238,9 +213,10 @@ export default {
             <Map :apartments="store.apartmentsFound" />
         </div>
 
-
-
         <hr>
+
+        <!-- PAGINATION -->
+        <PageChange @fetchData="store.searchApartments()" />
 
         <!-- CARD -->
         <div class="container mt-4">

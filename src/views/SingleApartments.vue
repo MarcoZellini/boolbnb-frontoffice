@@ -81,6 +81,7 @@ export default {
     },
 
     mounted() {
+        store.inputAddress = '';
         this.getSingleApartment()
 
     },
