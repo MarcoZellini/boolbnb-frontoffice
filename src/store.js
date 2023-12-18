@@ -149,7 +149,7 @@ export const store = reactive({
                 }
             )
                 .then(response => {
-                    this.apartmentsFound = response.data.result;
+                    this.apartmentsFound = response.data.result.data;
                     this.apartmentLoaded = true
                 })
                 .catch(err => {
