@@ -64,13 +64,25 @@ export default {
                                 <img :src="store.baseUrl + 'storage/' + image.path"
                                     class="d-block rounded bnb-shadow bnb-apt-thumb"
                                     :alt="'img-' + apartment.slug + '-' + image.id">
+
+                                <!-- SPONSORSHIP RIBBON -->
+                                <template v-if="apartment.sponsorships.length > 0">
+                                    <span class="bnb-sponsor">Sponsorizzato</span>
+                                </template>
                             </div>
 
                             <div class="carousel-item bnb-thumb-wrapper" v-else>
                                 <img :src="store.baseUrl + 'storage/' + image.path"
                                     class="d-block rounded bnb-shadow bnb-apt-thumb"
                                     :alt="'img-' + apartment.slug + '-' + image.id">
+
+                                <!-- SPONSORSHIP RIBBON -->
+                                <template v-if="apartment.sponsorships.length > 0">
+                                    <span class="bnb-sponsor">Sponsorizzato</span>
+                                </template>
+
                             </div>
+
                         </template>
 
                     </div>
@@ -112,6 +124,13 @@ export default {
                 <div class="bnb-thumb-wrapper" v-else>
                     <img :src="getMainImagePath(apartment.images)" class="d-block rounded bnb-shadow bnb-apt-thumb"
                         :alt="'img-' + apartment.slug + '-' + apartment.id">
+
+
+                    <!-- SPONSORSHIP RIBBON -->
+                    <template v-if="apartment.sponsorships.length > 0">
+                        <span class="bnb-sponsor">Sponsorizzato</span>
+                    </template>
+
                 </div>
 
                 <!-- ORIGINAL CODE -->
