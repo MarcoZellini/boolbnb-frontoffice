@@ -11,7 +11,8 @@ export default {
     data() {
 
         return {
-            store
+            store,
+            arrangedImgs: '',
         }
 
     },
@@ -35,7 +36,7 @@ export default {
             }
         }
 
-    },
+    }
 
 }
 
