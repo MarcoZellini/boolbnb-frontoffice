@@ -24,12 +24,17 @@ export default {
         }
     },
     methods: {
-        onChange() {
+        onChange(condition) {
             clearTimeout(store.changeTimeout)
-            if (store.inputAddress.length > 0) {
-                store.changeTimeout = setTimeout(() => {
-                    store.searchAddress()
-                }, 500);
+            console.log(store.inputAddress.length)
+            if (condition) {
+                if (store.inputAddress.length > 0) {
+                    store.changeTimeout = setTimeout(() => {
+                        store.searchAddress()
+                    }, 500);
+                }
+            } else {
+                store.searchApartments();
             }
         },
     },
@@ -49,11 +54,10 @@ export default {
                 <!-- BARRA RICERCA -->
                 <div class="w-100 d-flex ">
                     <div class="w-100">
-                        <input @change="store.searchApartments()" type="search" v-model="store.inputAddress"
+                        <input @change="onChange(false)" type="search" v-model="store.inputAddress"
                             placeholder="Cerca su BoolBnb..." class="form-control border-0 w-100 rounded-start-5  py-2"
-                            id="address" list="suggested_address" @input="onChange()"
-                            @keyup.enter="store.searchApartments()" autocomplete="off"
-                            form="searchForm"><!-- per la searchbox v2 rounded-end-5 -->
+                            id="address" list="suggested_address" @input="onChange(true)" @keyup.enter="onChange(false)"
+                            autocomplete="off" form="searchForm"><!-- per la searchbox v2 rounded-end-5 -->
 
                         <datalist id="suggested_address" v-if="store.isAddressListVisible">
                             <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
