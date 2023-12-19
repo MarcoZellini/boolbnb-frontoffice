@@ -147,7 +147,7 @@ export default {
             <div class="d-flex align-items-center">
 
                 <button type="submit" class="d-flex align-items-center btn btn-bnb rounded-pill text-capitalize px-4 me-3">
-                    <span v-if="this.loading">spedisco <font-awesome-icon :icon="['fas', 'paper-plane']" fade /></span>
+                    <span v-if="this.loading">Sto inviando il messaggio... <font-awesome-icon :icon="['fas', 'paper-plane']" fade /></span>
                     <span v-else>Invia<font-awesome-icon :icon="['fas', 'paper-plane']" class="ms-2" /></span>
                 </button>
                 <span v-if="this.message" class="text-success">

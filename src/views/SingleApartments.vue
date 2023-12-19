@@ -57,15 +57,11 @@ export default {
 
                     const visitDate = new Date().toISOString().slice(0, 19).replace('T', ' ');;
 
-                    // console.log("Visitor IP:", visitorIP, "Visit Date:", visitDate);
-
                     const payload = {
                         apartment_id: this.apartment.id,
                         ip_address: visitorIP,
                         date: visitDate
                     }
-
-                    // console.log("Payload", payload);
 
                     axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
 
@@ -81,6 +77,7 @@ export default {
     },
 
     mounted() {
+        window.scrollTo(0, 0);
         store.inputAddress = '';
         this.getSingleApartment()
 
@@ -90,10 +87,8 @@ export default {
         this.getVisitorData()
     },
 
-
 }
 </script>
-
 
 <template>
     <div class="container my-4">
@@ -142,7 +137,6 @@ export default {
                     </div>
                 </template>
 
-
             </div>
 
         </div>
@@ -160,7 +154,8 @@ export default {
                         {{ apartment.description }}
                     </p>
                     <p v-else>
-                        nessuna descrizione attualmente disponibile
+                        Il proprietario non ha ancora inserito una descrizione dell'appartamento. Puoi contattarlo via
+                        messaggio per ulteriori informazioni.
                     </p>
 
                 </div>
@@ -174,28 +169,28 @@ export default {
                     </h3>
                     <ul class="list-unstyled">
                         <li class="mt-1">
-                            <strong>Proprietario</strong>: {{ apartment.user.name + ' ' + apartment.user.lastname }}
+                            <strong>Proprietario:</strong> {{ apartment.user.name + ' ' + apartment.user.lastname }}
                         </li>
                         <li class="mt-1">
-                            <strong>Numero stanze</strong>: {{ apartment.rooms }}
-                        </li>
-
-                        <li class="mt-1">
-                            <strong>Numero letti</strong>: {{ apartment.beds }}
+                            <strong>Numero di stanze:</strong> {{ apartment.rooms }}
                         </li>
 
                         <li class="mt-1">
-                            <strong>Numero bagni</strong>: {{ apartment.bathrooms }}
+                            <strong>Numero di letti:</strong> {{ apartment.beds }}
                         </li>
 
                         <li class="mt-1">
-                            <strong>Superficie</strong>: {{ apartment.square_meters }} mq
+                            <strong>Numero di bagni:</strong> {{ apartment.bathrooms }}
+                        </li>
+
+                        <li class="mt-1">
+                            <strong>Superficie:</strong> {{ apartment.square_meters }} mq
                         </li>
 
                         <li class="mt-1">
                             <strong>Indirizzo</strong>:
                             <span v-if="this.apartment.address != null"> {{ apartment.address }} </span>
-                            <span v-else> Nessun indirizzo inserito </span>
+                            <span v-else> Nessun indirizzo inserito</span>
                         </li>
                     </ul>
                 </div>
@@ -220,10 +215,10 @@ export default {
 
             <!-- mappa -->
             <div class="col">
-                <h3 class=" border-top pt-2">dove ti troverai</h3>
+                <h3 class=" border-top pt-2">Dove ti troverai</h3>
                 <p>{{ apartment.address }}</p>
                 <Map v-if="this.loading" :latitude="this.latitude" :longitude="this.longitude" />
-                <div v-else>loading...</div>
+                <div v-else>Caricamento in corso...</div>
             </div>
             <!-- form contatto -->
 
