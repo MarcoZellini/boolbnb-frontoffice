@@ -86,8 +86,10 @@ export const store = reactive({
                         this.suggestedAddress.push(result.address.freeformAddress)
                     } else if (result.address.municipality) {
                         this.suggestedAddress.push(result.address.municipality + ',' + result.address.country)
+
                     } else {
                         this.suggestedAddress.push(result.address.countrySecondarySubdivision + ',' + result.address.country)
+
                     }
                 })
             })
@@ -133,7 +135,6 @@ export const store = reactive({
                 .catch(err => {
                     console.log(err.message)
                 });
-
         }
 
     },
