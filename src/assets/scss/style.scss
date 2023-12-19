@@ -4,7 +4,7 @@
 
 /*#region Utilities*/
 .bnb-color {
-    color: $bnb-primary ;
+    color: $bnb-primary !important;
 }
 
 
@@ -82,8 +82,8 @@ body {
     flex: 1;
 }
 
-.bnb-shadow {
-    box-shadow: 0px 1px 5px $bnb-secondary;
+.bnb-text-shadow {
+    filter: drop-shadow(0px 0px 5px $bnb-secondary);
 }
 
 .bnb-searchbox-elements {
