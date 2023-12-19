@@ -26,6 +26,9 @@ export default {
     },
     methods: {
         getSingleApartment() {
+
+            this.loading = false;
+
             axios.get(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`)
                 .then(response => {
                     this.apartment = response.data.result
@@ -35,7 +38,7 @@ export default {
 
                     this.filteredImg = this.apartment.images.filter(image => image.is_main === 0)
 
-                    this.loading = true
+                    this.loading = true;
                     console.log('lat' + this.latitude, 'lon' + this.longitude);
                     console.log(this.apartment);
 
