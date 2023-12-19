@@ -86,8 +86,8 @@ export default {
 
                     <h6 class="fs-5">Seleziona i servizi</h6>
 
-                    <div class="row justify-content-center px-3 px-1">
-                        <div class="col-12 col-lg-4 col-lg-3 form-check form-check-inline my-2 d-inline-flex align-items-center flex-grow-1 bnb-service-col position-relative"
+                    <div class="row justify-content-center px-3">
+                        <div class="col-12 col-lg-4 form-check form-check-inline my-2 d-inline-flex align-items-center flex-grow-1 position-relative"
                             v-for="service in store.services">
 
                             <input class="form-check-input me-1 services rounded-pill" type="checkbox" :id="service.id"
