@@ -77,8 +77,14 @@ export default {
                                     :alt="'img-' + apartment.slug + '-' + image.id">
 
                                 <!-- SPONSORSHIP RIBBON -->
-                                <template v-if="apartment.sponsorships.length > 0">
+<!--                                 <template v-if="apartment.sponsorships.length > 0">
                                     <span class="bnb-sponsor">Sponsorizzato</span>
+                                </template> -->
+
+                                <template v-if="apartment.sponsorships.length > 0">
+                                    <div class="box">
+                                        <div class="bnb-sponsor">Sponsorizzato</div>
+                                    </div>
                                 </template>
 
                             </div>
@@ -127,8 +133,14 @@ export default {
 
 
                     <!-- SPONSORSHIP RIBBON -->
-                    <template v-if="apartment.sponsorships.length > 0">
+                    <!-- <template v-if="apartment.sponsorships.length > 0">
                         <span class="bnb-sponsor">Sponsorizzato</span>
+                    </template> -->
+
+                    <template v-if="apartment.sponsorships.length > 0">
+                        <div class="box">
+                            <div class="bnb-sponsor">Sponsorizzato</div>
+                        </div>
                     </template>
 
                 </div>
