@@ -76,11 +76,6 @@ export default {
                                     class="d-block rounded bnb-shadow bnb-apt-thumb"
                                     :alt="'img-' + apartment.slug + '-' + image.id">
 
-                                <!-- SPONSORSHIP RIBBON -->
-<!--                                 <template v-if="apartment.sponsorships.length > 0">
-                                    <span class="bnb-sponsor">Sponsorizzato</span>
-                                </template> -->
-
                                 <template v-if="apartment.sponsorships.length > 0">
                                     <div class="box">
                                         <div class="bnb-sponsor">Sponsorizzato</div>
@@ -133,10 +128,6 @@ export default {
 
 
                     <!-- SPONSORSHIP RIBBON -->
-                    <!-- <template v-if="apartment.sponsorships.length > 0">
-                        <span class="bnb-sponsor">Sponsorizzato</span>
-                    </template> -->
-
                     <template v-if="apartment.sponsorships.length > 0">
                         <div class="box">
                             <div class="bnb-sponsor">Sponsorizzato</div>
@@ -144,12 +135,6 @@ export default {
                     </template>
 
                 </div>
-
-                <!-- ORIGINAL CODE -->
-                <!--                 
-                <img class="card-img-top rounded bnb-shadow bnb-apt-thumb" :src="getMainImagePath(apartment.images)"
-                :alt="apartment.slug" /> 
-                -->
 
                 <div class="card-body p-0 py-1">
 
