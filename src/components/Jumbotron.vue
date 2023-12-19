@@ -73,12 +73,12 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/partials/jumbotron.scss';
 
-.bnb-jumbotron {
+/* .bnb-jumbotron {
     height: 700px;
-    /* guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato */
+    // guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato 
     background-image: url('../assets/img/placeholders/jumbo4.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-}
+} */
 </style>

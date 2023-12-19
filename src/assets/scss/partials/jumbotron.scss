@@ -1,5 +1,8 @@
-/* .bnb-jumbotron {
-    height: 700px;
-    background-image: url("https://picsum.photos/1250");
+.bnb-jumbotron {
+    height: 500px;
+    /* guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato */
+    background-image: url('../assets/img/placeholders/jumbo4.jpg');
+    background-position: center;
     background-size: cover;
-} */
+    background-repeat: no-repeat;
+}

@@ -49,7 +49,6 @@ export default {
             name: 'apartment',
             params: { id: apartment.id }
         }">
-
             <div class="card border-0 m-0 h-100 bnb-apartment-card">
 
                 <div :id="'carousel-' + apartment.slug" class="carousel slide carousel-fade"

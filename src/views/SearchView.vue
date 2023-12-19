@@ -40,6 +40,7 @@ export default {
     mounted() {
         store.currentPage = 1;
         store.getServices();
+
     }
 }
 </script>
@@ -83,25 +84,6 @@ export default {
                             <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
                         </button>
                     </div>
-
-                    <!-- 
-                        searchbox v2   da rivedere in caso
-                         <div class="bottoni d-flex align-items-center ms-2" role="group">
-                        <button
-                            class="d-flex reset_btn align-items-center justify-content-center h-100 p-2 rounded-circle bnb-bg-color-important text-white me-2"
-                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                            style="width: 40px; height: 40px;">
-                            <font-awesome-icon :icon="['fas', 'sliders']" />
-                        </button>
-                        <button
-                            class="d-flex reset_btn align-items-center justify-content-center h-100 p-2 rounded-circle bnb-bg-color-important text-white"
-                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                            style="width: 40px; height: 40px;">
-                            <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
-
-                        </button>
-                    </div>
-                     -->
                 </div>
 
 
@@ -124,7 +106,7 @@ export default {
         <!-- <hr> -->
 
         <!-- PAGINATION -->
-        <PageChange @fetchData="store.searchApartments()" />
+        <PageChange v-if="store.apartmentsFound.length > 0" @fetchData="store.searchApartments()" />
 
         <!-- CARD -->
         <div class="container mt-2">
@@ -135,7 +117,7 @@ export default {
                 <div v-else-if="store.apartmentLoaded && store.apartmentsFound.length === 0" class="mb-4">
                     La ricerca non ha restituito risultati
                 </div>
-                <div v-else class="mb-4">
+                <div v-else class="my-4">
                     Digitare un indirizzo o il nome di una città e premere invio pper iniziare la ricerca
                 </div>
             </div>
@@ -145,12 +127,14 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.bnb-jumbotron {
+@use '../assets/scss/partials/jumbotron.scss';
+
+/* .bnb-jumbotron {
     height: 500px;
-    /* guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato */
+    //  guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato 
     background-image: url('../assets/img/placeholders/jumbo4.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-}
+} */
 </style>
