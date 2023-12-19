@@ -54,7 +54,7 @@ export const store = reactive({
                 this.apartments = response.data.result.data;
                 this.totalPages = response.data.result.last_page;
 
-                console.log("Apartments Index:", this.apartments);
+                /*  console.log("Apartments Index:", this.apartments); */
 
             })
             .catch(err => {
@@ -91,11 +91,13 @@ export const store = reactive({
                         this.suggestedAddress.push(result.address.freeformAddress)
                     } else if (result.address.municipality) {
                         this.suggestedAddress.push(result.address.municipality + ',' + result.address.country)
+
                     } else {
                         this.suggestedAddress.push(result.address.countrySecondarySubdivision + ',' + result.address.country)
+
                     }
                 })
-                console.log(this.suggestedAddress)
+                /* console.log( this.suggestedAddress) */
             })
     },
 
@@ -152,7 +154,7 @@ export const store = reactive({
                 });
                 return counter == this.minServices.length
             })
-            console.log('Appartamenti filtrati', this.apartmentsFound)
+            /*  console.log('Appartamenti filtrati', this.apartmentsFound) */
         }
 
     },

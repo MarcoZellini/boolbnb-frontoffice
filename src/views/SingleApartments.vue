@@ -1,8 +1,13 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-import ContactForm from '../components/ContactForm.vue'
-import Map from '../components/Map.vue'
+import ContactForm from '../components/ContactForm.vue';
+
+// import Map from '../components/Map.vue'
+
+import { onMounted } from 'vue'
+import tt from "@tomtom-international/web-sdk-maps";
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
 
 export default {
 
@@ -15,17 +20,19 @@ export default {
             },
             latitude: 0.0,
             longitude: 0.0,
-            loading: false,
             styleClasses: ['bnb-mid-img', 'bnb-tr-img', 'bnb-mid-img', 'bnb-br-img'],
             filteredImg: [],
         }
     },
+
     components: {
         ContactForm,
-        Map
+        // Map
     },
     methods: {
         getSingleApartment() {
+
+
             axios.get(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`)
                 .then(response => {
                     this.apartment = response.data.result
@@ -35,13 +42,16 @@ export default {
 
                     this.filteredImg = this.apartment.images.filter(image => image.is_main === 0)
 
-                    this.loading = true
-                    console.log('lat' + this.latitude, 'lon' + this.longitude);
-                    console.log(this.apartment);
+
+                    /*  console.log('lat', this.latitude, 'lon', this.longitude);
+                     console.log(this.apartment); */
+
+                    this.createMap();
 
                 }).catch(error => {
                     console.error(error);
                 })
+
         },
         getIcon(icon) {
             return store.baseUrl + icon;
@@ -57,15 +67,11 @@ export default {
 
                     const visitDate = new Date().toISOString().slice(0, 19).replace('T', ' ');;
 
-                    // console.log("Visitor IP:", visitorIP, "Visit Date:", visitDate);
-
                     const payload = {
                         apartment_id: this.apartment.id,
                         ip_address: visitorIP,
                         date: visitDate
                     }
-
-                    // console.log("Payload", payload);
 
                     axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
 
@@ -77,23 +83,50 @@ export default {
                 .catch(error => {
                     console.error('Error:', error);
                 });
+        },
+
+        createMap() {
+
+
+            const mapContainer = this.$refs.mapContainer;
+            document.getElementById('map').style.height = '500px';
+            document.getElementById('map').style.width = '100%';
+            if (mapContainer) {
+                const lngLat = new tt.LngLat(this.longitude, this.latitude);
+                // console.log('test', this.longitude, this.latitude);
+                // console.log('lngLat', lngLat);
+
+                const map = tt.map({
+                    key: 'vPuUkOEvt9S93r8E98XRbrHJJG1Mz6Tr',
+                    container: mapContainer,
+                    center: lngLat,
+                    zoom: 11,
+                    language: 'it-IT',
+                });
+
+                new tt.Marker({ color: '#E00B41' }).setLngLat(lngLat).addTo(map);
+                map.addControl(new tt.NavigationControl());
+
+                // console.log('Map:', map);
+
+            }
         }
     },
 
-    mounted() {
+    async mounted() {
+        await this.getSingleApartment();
+        window.scrollTo(0, 0);
         store.inputAddress = '';
-        this.getSingleApartment()
 
     },
 
     updated() {
-        this.getVisitorData()
+        this.getVisitorData();
     },
 
 
 }
 </script>
-
 
 <template>
     <div class="container my-4">
@@ -142,7 +175,6 @@ export default {
                     </div>
                 </template>
 
-
             </div>
 
         </div>
@@ -160,7 +192,8 @@ export default {
                         {{ apartment.description }}
                     </p>
                     <p v-else>
-                        nessuna descrizione attualmente disponibile
+                        Il proprietario non ha ancora inserito una descrizione dell'appartamento. Puoi contattarlo via
+                        messaggio per ulteriori informazioni.
                     </p>
 
                 </div>
@@ -174,28 +207,28 @@ export default {
                     </h3>
                     <ul class="list-unstyled">
                         <li class="mt-1">
-                            <strong>Proprietario</strong>: {{ apartment.user.name + ' ' + apartment.user.lastname }}
+                            <strong>Proprietario:</strong> {{ apartment.user.name + ' ' + apartment.user.lastname }}
                         </li>
                         <li class="mt-1">
-                            <strong>Numero stanze</strong>: {{ apartment.rooms }}
-                        </li>
-
-                        <li class="mt-1">
-                            <strong>Numero letti</strong>: {{ apartment.beds }}
+                            <strong>Numero di stanze:</strong> {{ apartment.rooms }}
                         </li>
 
                         <li class="mt-1">
-                            <strong>Numero bagni</strong>: {{ apartment.bathrooms }}
+                            <strong>Numero di letti:</strong> {{ apartment.beds }}
                         </li>
 
                         <li class="mt-1">
-                            <strong>Superficie</strong>: {{ apartment.square_meters }} mq
+                            <strong>Numero di bagni:</strong> {{ apartment.bathrooms }}
+                        </li>
+
+                        <li class="mt-1">
+                            <strong>Superficie:</strong> {{ apartment.square_meters }} mq
                         </li>
 
                         <li class="mt-1">
                             <strong>Indirizzo</strong>:
                             <span v-if="this.apartment.address != null"> {{ apartment.address }} </span>
-                            <span v-else> Nessun indirizzo inserito </span>
+                            <span v-else> Nessun indirizzo inserito</span>
                         </li>
                     </ul>
                 </div>
@@ -219,14 +252,13 @@ export default {
             </div>
 
             <!-- mappa -->
-            <div class="col">
-                <h3 class=" border-top pt-2">dove ti troverai</h3>
-                <p>{{ apartment.address }}</p>
-                <Map v-if="this.loading" :latitude="this.latitude" :longitude="this.longitude" />
-                <div v-else>loading...</div>
-            </div>
-            <!-- form contatto -->
 
+            <h3 class=" border-top pt-2">Dove ti troverai</h3>
+            <p>{{ apartment.address }}</p>
+            <div id="map" ref="mapContainer" class="rounded bnb-shadow"></div>
+
+
+            <!-- form contatto -->
             <ContactForm class="py-5" />
 
         </div>

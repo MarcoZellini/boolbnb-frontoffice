@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <div class="d-flex justify-content-end align-items-center px-4 my-2 gap-3  ">
+    <div class="d-flex justify-content-end align-items-center px-4 mb-2 gap-3 mt-3">
 
         <ul class="d-flex align-items-center list-unstyled  rounded-pill">
 

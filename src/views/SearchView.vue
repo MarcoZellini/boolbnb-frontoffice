@@ -57,7 +57,8 @@ export default {
                         <input @change="onChange(false)" type="search" v-model="store.inputAddress"
                             placeholder="Cerca su BoolBnb..." class="form-control border-0 w-100 rounded-start-5  py-2"
                             id="address" list="suggested_address" @input="onChange(true)" @keyup.enter="onChange(false)"
-                            autocomplete="off" form="searchForm"><!-- per la searchbox v2 rounded-end-5 -->
+                            autocomplete="off" form="searchForm">
+                        <!-- per la searchbox v2 rounded-end-5 -->
 
                         <datalist id="suggested_address" v-if="store.isAddressListVisible">
                             <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
@@ -71,14 +72,14 @@ export default {
 
                         <!-- BOTTONE INVIO RICERCA -->
                         <button type="button"
-                            class="d-flex bnb-searchbox-elements reset_btn align-items-center h-100 px-4 p-2 rounded rounded-circle bg-white"
+                            class="d-flex bnb-searchbox-elements reset_btn align-items-center h-100 px-4 py-2 rounded rounded-circle bg-white bo"
                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <font-awesome-icon :icon="['fas', 'sliders']" />
                         </button>
 
                         <!-- BOTTONE FILTRI -->
                         <button type="submit"
-                            class="d-flex align-items-center bnb-searchbox-elements reset_btn px-4 p-2 rounded-circle bg-white  mx-2"
+                            class="d-flex align-items-center bnb-searchbox-elements reset_btn px-4 py-2  rounded-circle bg-white  me-2"
                             data-bs-dismiss="offcanvas" aria-label="Close">
                             <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
                         </button>
@@ -115,18 +116,19 @@ export default {
 
     <div class="container">
 
+        <h2 v-if="store.apartmentLoaded && store.apartmentsFound.length > 0" class="mt-2">Risultati della ricerca:</h2>
         <div v-if="store.apartmentLoaded && store.apartmentsFound.length > 0" class="rounded bnb-shadow my-3"
             style="height: 500px;width: 100%;">
             <Map :apartments="store.apartmentsFound" />
         </div>
 
-        <hr>
+        <!-- <hr> -->
 
         <!-- PAGINATION -->
         <PageChange @fetchData="store.searchApartments()" />
 
         <!-- CARD -->
-        <div class="container mt-4">
+        <div class="container mt-2">
             <div v-if="store.inputAddress != '' || store.apartmentsFound.length >= 0">
                 <div class="row gx-5 gy-2" v-if="store.apartmentsFound.length > 0">
                     <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsFound" />
@@ -135,7 +137,7 @@ export default {
                     La ricerca non ha restituito risultati
                 </div>
                 <div v-else class="mb-4">
-                    Digitare un indirizzo o il nome di una città e premere invio
+                    Digitare un indirizzo o il nome di una città e premere invio pper iniziare la ricerca
                 </div>
             </div>
         </div>
