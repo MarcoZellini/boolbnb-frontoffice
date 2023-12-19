@@ -1,8 +1,13 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-import ContactForm from '../components/ContactForm.vue'
-import Map from '../components/Map.vue'
+import ContactForm from '../components/ContactForm.vue';
+
+// import Map from '../components/Map.vue'
+
+import { onMounted } from 'vue'
+import tt from "@tomtom-international/web-sdk-maps";
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
 
 export default {
 
@@ -15,20 +20,17 @@ export default {
             },
             latitude: 0.0,
             longitude: 0.0,
-            loading: false,
             styleClasses: ['bnb-mid-img', 'bnb-tr-img', 'bnb-mid-img', 'bnb-br-img'],
             filteredImg: [],
         }
     },
+
     components: {
         ContactForm,
-        Map
+        // Map
     },
     methods: {
         getSingleApartment() {
-
-            this.loading = false;
-
             axios.get(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`)
                 .then(response => {
                     this.apartment = response.data.result
@@ -37,14 +39,12 @@ export default {
                     this.address = this.apartment.address
 
                     this.filteredImg = this.apartment.images.filter(image => image.is_main === 0)
-
-                    this.loading = true;
-                    console.log('lat' + this.latitude, 'lon' + this.longitude);
-                    console.log(this.apartment);
+                    this.createMap();
 
                 }).catch(error => {
                     console.error(error);
                 })
+
         },
         getIcon(icon) {
             return store.baseUrl + icon;
@@ -66,28 +66,54 @@ export default {
                         date: visitDate
                     }
 
-                    axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
-
+                    axios.post(this.store.baseUrl + this.store.viewsAPI, payload)
+                    .then(response => {
                         // console.log(response.data.message);
-
                     })
 
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
+        },
+
+        createMap() {
+
+
+            const mapContainer = this.$refs.mapContainer;
+            document.getElementById('map').style.height = '500px';
+            document.getElementById('map').style.width = '100%';
+            if (mapContainer) {
+                const lngLat = new tt.LngLat(this.longitude, this.latitude);
+                // console.log('test', this.longitude, this.latitude);
+                // console.log('lngLat', lngLat);
+
+                const map = tt.map({
+                    key: 'vPuUkOEvt9S93r8E98XRbrHJJG1Mz6Tr',
+                    container: mapContainer,
+                    center: lngLat,
+                    zoom: 11,
+                    language: 'it-IT',
+                });
+
+                new tt.Marker({ color: '#E00B41' }).setLngLat(lngLat).addTo(map);
+                map.addControl(new tt.NavigationControl());
+
+                // console.log('Map:', map);
+
+            }
         }
     },
 
-    mounted() {
+
+    async mounted() {
+        await this.getSingleApartment();
         window.scrollTo(0, 0);
         store.inputAddress = '';
-        this.getSingleApartment()
-
     },
 
     updated() {
-        this.getVisitorData()
+        this.getVisitorData();
     },
 
 }
@@ -217,14 +243,11 @@ export default {
             </div>
 
             <!-- mappa -->
-            <div class="col">
-                <h3 class=" border-top pt-2">Dove ti troverai</h3>
-                <p>{{ apartment.address }}</p>
-                <Map v-if="this.loading" :latitude="this.latitude" :longitude="this.longitude" />
-                <div v-else>Caricamento in corso...</div>
-            </div>
-            <!-- form contatto -->
+            <h3 class=" border-top pt-2">Dove ti troverai</h3>
+            <p>{{ apartment.address }}</p>
+            <div id="map" ref="mapContainer" class="rounded bnb-shadow"></div>
 
+            <!-- form contatto -->
             <ContactForm class="py-5" />
 
         </div>

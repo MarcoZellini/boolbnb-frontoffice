@@ -23,11 +23,25 @@ export default {
             store.minServices = [];
             store.searchApartments();
             this.$router.push('search')
-        }
+        },
+
+        onChange(condition) {
+            clearTimeout(store.changeTimeout)
+            /*        console.log(store.inputAddress.length) */
+            if (condition) {
+                if (store.inputAddress.length > 0) {
+                    store.changeTimeout = setTimeout(() => {
+                        store.searchAddress()
+                    }, 500);
+                }
+            } else {
+                store.searchApartments();
+            }
+        },
     },
 
     updated() {
-        console.log(store.apartmentsFound[0]);
+        /*     console.log(store.apartmentsFound[0]); */
     },
 
 }
@@ -40,8 +54,16 @@ export default {
 
             <div class="col-8">
                 <h1 class="text-light text-center">BnBenuti</h1>
-                <input type="search" @keydown.enter="this.search()" v-model="store.inputAddress"
-                    placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow">
+                <input type="search" @change="search()" @keydown.enter="this.search()" v-model="store.inputAddress"
+                    placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow" id="address"
+                    list="suggested_address" @input="onChange(true)">
+
+
+                <datalist id="suggested_address" v-if="store.isAddressListVisible">
+                    <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
+                        {{ suggestedAddress }}
+                    </option>
+                </datalist>
             </div>
 
         </div>

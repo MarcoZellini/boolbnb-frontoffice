@@ -53,9 +53,6 @@ export const store = reactive({
             .then(response => {
                 this.apartments = response.data.result.data;
                 this.totalPages = response.data.result.last_page;
-
-                console.log("Apartments Index:", this.apartments);
-
             })
             .catch(err => {
                 console.error(err);
@@ -72,7 +69,6 @@ export const store = reactive({
             .catch(err => {
                 console.error(err);
             })
-        //console.log("Servizi", this.services);
 
     },
 
@@ -84,18 +80,18 @@ export const store = reactive({
 
         axios.get(this.TomTomSearchUrl + this.inputAddress + '.json?countrySet=IT&key=' + this.TomTomKey)
             .then(response => {
-                //console.log(response.data.results)
                 const results = response.data.results;
                 results.forEach(result => {
                     if (result.address.freeformAddress) {
                         this.suggestedAddress.push(result.address.freeformAddress)
                     } else if (result.address.municipality) {
                         this.suggestedAddress.push(result.address.municipality + ',' + result.address.country)
+
                     } else {
                         this.suggestedAddress.push(result.address.countrySecondarySubdivision + ',' + result.address.country)
+
                     }
                 })
-                console.log(this.suggestedAddress)
             })
     },
 
@@ -117,16 +113,17 @@ export const store = reactive({
                 });
 
             // chiamata AJAX al backend per filtrare gli appartamenti
-            await axios.get(this.baseUrl + this.searchAPI + `?page=${this.currentPage}`,
+            await axios.get(this.baseUrl + this.searchAPI,
                 {
                     params:
                     {
+                        'page': this.currentPage,
                         'inputAddressLat': this.inputAddressLat,
                         'inputAddressLong': this.inputAddressLong,
                         'maxRadius': this.maxRadius,
                         'minRooms': this.minRooms,
                         'minBeds': this.minBeds,
-                        //'services': this.services,
+                        'services': this.minServices,
                     }
                 }
             )
@@ -138,21 +135,6 @@ export const store = reactive({
                 .catch(err => {
                     console.log(err.message)
                 });
-            //console.log('Appartamenti filtrati', this.apartmentsFound)
-
-            //console.log(this.minServices)
-
-            //filtraggio appartamenti per servizi
-            this.apartmentsFound = this.apartmentsFound.filter(apartment => {
-                let counter = 0;
-                apartment.services.forEach(service => {
-                    if (this.minServices.includes(service.id)) {
-                        counter++;
-                    }
-                });
-                return counter == this.minServices.length
-            })
-            console.log('Appartamenti filtrati', this.apartmentsFound)
         }
 
     },
