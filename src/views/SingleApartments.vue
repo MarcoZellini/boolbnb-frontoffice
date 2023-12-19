@@ -209,7 +209,9 @@ export default {
                         </li>
 
                         <li class="mt-1">
-                            <strong>Superficie:</strong> {{ apartment.square_meters }} mq
+                            <span v-if="apartment.square_meters"><strong>Superficie:</strong> {{ apartment.square_meters }}
+                                mq</span>
+                            <span v-else><strong>Superficie:</strong> non ancora inserita</span>
                         </li>
 
                         <li class="mt-1">
