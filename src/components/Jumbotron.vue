@@ -53,7 +53,7 @@ export default {
         <div class="row justify-content-center align-items-center h-100">
 
             <div class="col-8">
-                <h1 class="text-center text-light">Dove passerai le vacanze?</h1>
+                <h1 class="text-center text-light bnb-text-shadow">Dove passerai le vacanze?</h1>
                 <input type="search" @change="search()" @keydown.enter="this.search()" v-model="store.inputAddress"
                     placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow" id="address"
                     list="suggested_address" @input="onChange(true)">
