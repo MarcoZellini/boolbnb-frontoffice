@@ -26,7 +26,6 @@ export default {
     methods: {
         onChange(condition) {
             clearTimeout(store.changeTimeout)
-            console.log(store.inputAddress.length)
             if (condition) {
                 if (store.inputAddress.length > 0) {
                     store.changeTimeout = setTimeout(() => {
@@ -69,14 +68,14 @@ export default {
 
                     <div class="bottoni d-flex align-items-center  rounded-end-5  bg-white" role="group">
 
-                        <!-- BOTTONE INVIO RICERCA -->
+                        <!-- BOTTONE FILTRI -->
                         <button type="button"
                             class="d-flex bnb-searchbox-elements reset_btn align-items-center h-100 px-4 p-2 rounded rounded-circle bg-white"
                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <font-awesome-icon :icon="['fas', 'sliders']" />
                         </button>
 
-                        <!-- BOTTONE FILTRI -->
+                        <!-- BOTTONE INVIO RICERCA -->
                         <button type="submit"
                             class="d-flex align-items-center bnb-searchbox-elements reset_btn px-4 p-2 rounded-circle bg-white  mx-2"
                             data-bs-dismiss="offcanvas" aria-label="Close">
