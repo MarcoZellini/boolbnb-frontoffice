@@ -31,8 +31,6 @@ export default {
     },
     methods: {
         getSingleApartment() {
-
-
             axios.get(store.baseUrl + store.apartmentApi + `/${this.$route.params.id}`)
                 .then(response => {
                     this.apartment = response.data.result
@@ -41,11 +39,6 @@ export default {
                     this.address = this.apartment.address
 
                     this.filteredImg = this.apartment.images.filter(image => image.is_main === 0)
-
-
-                    /*  console.log('lat', this.latitude, 'lon', this.longitude);
-                     console.log(this.apartment); */
-
                     this.createMap();
 
                 }).catch(error => {
@@ -73,10 +66,9 @@ export default {
                         date: visitDate
                     }
 
-                    axios.post(this.store.baseUrl + this.store.viewsAPI, payload).then(response => {
-
+                    axios.post(this.store.baseUrl + this.store.viewsAPI, payload)
+                    .then(response => {
                         // console.log(response.data.message);
-
                     })
 
                 })
@@ -113,17 +105,16 @@ export default {
         }
     },
 
+
     async mounted() {
         await this.getSingleApartment();
         window.scrollTo(0, 0);
         store.inputAddress = '';
-
     },
 
     updated() {
         this.getVisitorData();
     },
-
 
 }
 </script>
@@ -252,11 +243,9 @@ export default {
             </div>
 
             <!-- mappa -->
-
             <h3 class=" border-top pt-2">Dove ti troverai</h3>
             <p>{{ apartment.address }}</p>
             <div id="map" ref="mapContainer" class="rounded bnb-shadow"></div>
-
 
             <!-- form contatto -->
             <ContactForm class="py-5" />

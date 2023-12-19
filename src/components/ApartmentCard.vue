@@ -11,8 +11,7 @@ export default {
     data() {
 
         return {
-            store,
-            arrangedImgs: '',
+            store
         }
 
     },
