@@ -10,8 +10,6 @@ export const store = reactive({
     searchAPI: 'api/search',
     servicesAPI: 'api/services',
     viewsAPI: 'api/views',
-    currentPage: 1,
-    totalPages: null,
 
     // Variabili per TomTom
     TomTomKey: 'QTQljhHM9rS4d2vJLMcDX9qzl8tyGA43',
@@ -30,13 +28,17 @@ export const store = reactive({
     minBeds: 1,
     minServices: [],
 
+    // variabili pagination
+    currentPage: 1,
+    totalPages: null,
+
     // array dei suggerimenti di indirizzo
     changeTimeout: null,
     suggestedAddress: [],
     isAddressListVisible: false,
 
     // array degli appartamenti
-    apartmentsIndex: '',
+    apartments: '',
 
     //array dei servizi
     services: [],
@@ -49,10 +51,10 @@ export const store = reactive({
 
         await axios.get(this.baseUrl + this.apartmentApi + `?page=${this.currentPage}`)
             .then(response => {
-                this.apartmentsIndex = response.data.result.data;
+                this.apartments = response.data.result.data;
                 this.totalPages = response.data.result.last_page;
 
-                console.log("Apartments Index:", this.apartmentsIndex);
+                console.log("Apartments Index:", this.apartments);
 
             })
             .catch(err => {
@@ -82,7 +84,7 @@ export const store = reactive({
 
         axios.get(this.TomTomSearchUrl + this.inputAddress + '.json?countrySet=IT&key=' + this.TomTomKey)
             .then(response => {
-                /*  console.log(response.data.results) */
+                //console.log(response.data.results)
                 const results = response.data.results;
                 results.forEach(result => {
                     if (result.address.freeformAddress) {
@@ -98,6 +100,7 @@ export const store = reactive({
     },
 
     async searchApartments() {
+
         this.apartmentLoaded = false
         this.isAddressListVisible = false;
 

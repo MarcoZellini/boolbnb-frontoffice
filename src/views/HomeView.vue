@@ -50,7 +50,7 @@ export default {
                 <PageChange @fetchData="store.getApartments()" />
 
                 <!-- CARD COMPONENT -->
-                <ApartmentCard :apartment="apartment" v-for="apartment in store.apartmentsIndex" />
+                <ApartmentCard :apartment="apartment" v-for="apartment in store.apartments" />
 
             </div>
         </div>
