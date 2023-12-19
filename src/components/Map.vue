@@ -28,7 +28,7 @@ export default {
 
             if (props.apartments) {
                 centerLngLat = new tt.LngLat(props.apartments[0].longitude, props.apartments[0].latitude);
-                zoomMap = 7
+                zoomMap = 11
             } else {
                 centerLngLat = new tt.LngLat(props.longitude, props.latitude);
                 zoomMap = 12
