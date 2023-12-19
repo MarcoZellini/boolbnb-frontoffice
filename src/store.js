@@ -46,12 +46,12 @@ export const store = reactive({
     // array degli appartamenti filtrati
     apartmentsFound: [],
     apartmentLoaded: false,
-
     async getApartments() {
 
         await axios.get(this.baseUrl + this.apartmentApi + `?page=${this.currentPage}`)
             .then(response => {
                 this.apartments = response.data.result.data;
+                console.log(this.apartments);
                 this.totalPages = response.data.result.last_page;
             })
             .catch(err => {
@@ -128,7 +128,24 @@ export const store = reactive({
                 }
             )
                 .then(response => {
+                    console.log(
+                        this.baseUrl + this.searchAPI,
+                        {
+                            params:
+                            {
+                                'page': this.currentPage,
+                                'inputAddressLat': this.inputAddressLat,
+                                'inputAddressLong': this.inputAddressLong,
+                                'maxRadius': this.maxRadius,
+                                'minRooms': this.minRooms,
+                                'minBeds': this.minBeds,
+                                'services': this.minServices,
+                            }
+                        }
+
+                    );
                     this.apartmentsFound = response.data.result.data;
+                    console.log('ricerca', this.apartmentsFound);
                     this.apartmentLoaded = true
                     this.totalPages = response.data.result.last_page;
                 })
