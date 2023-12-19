@@ -1,0 +1,58 @@
+@use 'bootstrap';
+
+@use './variables.scss' as *;
+
+/* BS MEDIA QUERIES BREACKPOINTS
+Small	sm	≥576px
+Medium	md	≥768px
+Large	lg	≥992px
+Extra large	xl	≥1200px
+Extra extra large	xxl	≥1400px 
+*/
+
+@media screen and (max-width: 425px) {
+
+    .offcanvas {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+}
+
+@media screen and (max-width: 575.97px) {}
+
+@media screen and (min-width: 575.98px) {
+
+    .offcanvas {
+        max-width: 75% !important;
+        width: 75% !important;
+        // background-color: aqua;
+    }
+
+}
+
+@media screen and (max-width: 575.98px) {}
+
+@media screen and (max-width: 575.98px) {}
+
+@media screen and (min-width: 768px) {
+
+    .offcanvas {
+        max-width: 50% !important;
+        width: 50% !important;
+
+    }
+
+}
+
+@media screen and (min-width: 992px) {}
+
+@media screen and (min-width: 1200px) {
+
+    .offcanvas {
+        max-width: 45% !important;
+        width: 45% !important;
+    }
+}
+
+@media screen and (min-width: 1400px) {}

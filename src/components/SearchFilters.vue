@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end w-100" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasRightLabel">Filtri di ricerca</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -86,16 +86,17 @@ export default {
 
                     <h6 class="fs-5">Seleziona i servizi</h6>
 
-                    <div class="row justify-content-center px-3 px-md-1">
-                        <div class="col-4 form-check form-check-inline my-2 d-flex-inline flex-grow-1 bnb-service-col position-relative"
+                    <div class="row justify-content-center px-3">
+                        <div class="col-12 col-lg-4 form-check form-check-inline my-2 d-inline-flex align-items-center flex-grow-1 position-relative"
                             v-for="service in store.services">
 
-                            <input class="form-check-input me-2 services rounded-pill" type="checkbox" :id="service.id"
+                            <input class="form-check-input me-1 services rounded-pill" type="checkbox" :id="service.id"
                                 v-model="store.minServices" :value="service.id" />
 
-                            <div class="services_icons d-flex align-items-center">
+                            <!-- services_icons  -->
+                            <div class="d-flex align-items-center">
                                 <img style="height:20px" :src="store.baseUrl + service.icon" alt="">
-                                <label class="form-check-label me-2" :for="service.id">
+                                <label class="form-check-label ms-2" :for="service.id">
                                     {{ service.name }}
                                 </label>
                             </div>
@@ -120,4 +121,6 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../assets/scss/partials/searchFilters.scss';
+</style>

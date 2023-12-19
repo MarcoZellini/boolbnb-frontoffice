@@ -3,9 +3,6 @@ import axios from 'axios';
 import { store } from '../store';
 import ContactForm from '../components/ContactForm.vue';
 
-// import Map from '../components/Map.vue'
-
-import { onMounted } from 'vue'
 import tt from "@tomtom-international/web-sdk-maps";
 import '@tomtom-international/web-sdk-maps/dist/maps.css';
 
@@ -27,7 +24,6 @@ export default {
 
     components: {
         ContactForm,
-        // Map
     },
     methods: {
         getSingleApartment() {
@@ -67,9 +63,9 @@ export default {
                     }
 
                     axios.post(this.store.baseUrl + this.store.viewsAPI, payload)
-                    .then(response => {
-                        // console.log(response.data.message);
-                    })
+                        .then(response => {
+                            // console.log(response.data.message);
+                        })
 
                 })
                 .catch(error => {
