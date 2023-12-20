@@ -118,7 +118,8 @@ export default {
                     La ricerca non ha restituito risultati
                 </div>
                 <div v-else class="my-4">
-                    Digitare un indirizzo o il nome di una città e premere invio pper iniziare la ricerca
+                    Digitare un indirizzo o il nome di una città e premere invio per
+                    iniziare la ricerca
                 </div>
             </div>
         </div>

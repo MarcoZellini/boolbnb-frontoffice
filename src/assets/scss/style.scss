@@ -96,6 +96,12 @@ body {
 
 }
 
+.outline-none {
+    &:focus-visible {
+        outline: none;
+    }
+}
+
 .reset_btn {
     background: none;
     border: none;
