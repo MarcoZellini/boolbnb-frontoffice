@@ -231,7 +231,7 @@ export default {
                 <div class="mt-3">
                     <h3>Servizi</h3>
                     <div class="row">
-                        <ul class=" list-unstyled d-flex flex-wrap gap-2 g-3">
+                        <ul class=" list-unstyled d-flex justify-content-center flex-wrap gap-2 g-3">
                             <li v-for="service in apartment.services">
                                 <span class="badge rounded-pill me-1 border text-black">
                                     <img style="width: 20px;" :src="getIcon(service.icon)" :alt="service.name">

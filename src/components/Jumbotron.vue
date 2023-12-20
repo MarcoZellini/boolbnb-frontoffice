@@ -52,19 +52,31 @@ export default {
     <div class="container-fluid bnb-jumbotron mb-3">
         <div class="row justify-content-center align-items-center h-100">
 
-            <div class="col-8">
+            <div class="col-11 col-sm-10 col-lg-8 d-flex flex-column">
                 <h1 class="text-center text-light bnb-text-shadow">Dove passerai le vacanze?</h1>
-                <input type="search" @change="search()" @keydown.enter="this.search()" v-model="store.inputAddress"
-                    placeholder="Cerca su BoolBnb..." class="w-100 rounded-pill border-1 shadow" id="address"
-                    list="suggested_address" @input="onChange(true)">
+                <div class="d-flex">
+                    <input type="search" @change="search()" @keydown.enter="this.search()" v-model="store.inputAddress"
+                        placeholder="Cerca su BoolBnb..." class="w-100 rounded-start-5 border-0 shadow outline-none"
+                        id="address" list="suggested_address" @input="onChange(true)">
 
+                    <datalist id="suggested_address" v-if="store.isAddressListVisible">
+                        <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
+                            {{ suggestedAddress }}
+                        </option>
+                    </datalist>
+                    <div class="bottoni d-flex align-items-center  rounded-end-5  bg-white" role="group">
 
-                <datalist id="suggested_address" v-if="store.isAddressListVisible">
-                    <option v-for="suggestedAddress in store.suggestedAddress" :value="suggestedAddress">
-                        {{ suggestedAddress }}
-                    </option>
-                </datalist>
+                        <!-- BOTTONE INVIO RICERCA -->
+                        <button type="submit"
+                            class="d-flex align-items-center bnb-searchbox-elements reset_btn px-4 py-2  rounded-circle bg-white  me-2"
+                            data-bs-dismiss="offcanvas" aria-label="Close">
+                            <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+                        </button>
+                    </div>
+
+                </div>
             </div>
+
 
         </div>
     </div>
@@ -72,13 +84,4 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/jumbotron.scss';
-
-/* .bnb-jumbotron {
-    height: 700px;
-    // guaradate le foto e poi ditemi se ne trovate una migliore oos volete usare una di quelle cho trovato 
-    background-image: url('../assets/img/placeholders/jumbo4.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
 </style>
