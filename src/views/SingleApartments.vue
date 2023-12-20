@@ -130,7 +130,8 @@ export default {
                     <div class="wrappper" v-if="image.is_main === 1">
                         <img class="w-100 object-fit-cover rounded-start bnb-main-img shaodw-custom "
                             :src="store.baseUrl + 'storage/' + image.path" :alt="apartment.title"
-                            :style="apartment.images.length < 5 ? 'border-radius: 0.375rem' : ''">
+                            :style="apartment.images.length < 5 ? 'border-radius: 0.375rem' : ''"
+                            @error="$event.target.src = getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')">
                     </div>
                 </div>
             </div>
@@ -143,7 +144,8 @@ export default {
                             <div class="col-6 m-0 p-0 h-100 bnb-extra-img-5">
                                 <img class="w-100 h-100 img-fluid object-fit-cover rounded shaodw-custom"
                                     :class="styleClasses[i]" :src="store.baseUrl + 'storage/' + image.path"
-                                    :alt="apartment.title">
+                                    :alt="apartment.title"
+                                    @error="$event.target.src = getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')">
                             </div>
                         </template>
                         <div v-else class="d-none"></div>
@@ -158,7 +160,8 @@ export default {
                     <div class="col m-0 p-0" v-if="image.is_main == false">
                         <img class="w-100 img-fluid object-fit-cover shaodw-custom bnb-extra-img"
                             :src="store.baseUrl + 'storage/' + image.path" :alt="image.title"
-                            style="border-radius: 0.375rem;">
+                            style="border-radius: 0.375rem;"
+                            @error="$event.target.src = getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')">
                     </div>
                 </template>
 

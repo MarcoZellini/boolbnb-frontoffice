@@ -61,7 +61,8 @@ export default {
                             <div class="carousel-item active bnb-thumb-wrapper" v-if="image.is_main">
                                 <img :src="store.baseUrl + 'storage/' + image.path"
                                     class="d-block rounded bnb-shadow bnb-apt-thumb"
-                                    :alt="'img-' + apartment.slug + '-' + image.id">
+                                    :alt="'img-' + apartment.slug + '-' + image.id"
+                                    @error="$event.target.src = getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')">
 
                                 <!-- SPONSORSHIP RIBBON -->
                                 <template v-if="apartment.sponsorships.length > 0">
@@ -72,7 +73,8 @@ export default {
                             <div class="carousel-item bnb-thumb-wrapper" v-else>
                                 <img :src="store.baseUrl + 'storage/' + image.path"
                                     class="d-block rounded bnb-shadow bnb-apt-thumb"
-                                    :alt="'img-' + apartment.slug + '-' + image.id">
+                                    :alt="'img-' + apartment.slug + '-' + image.id"
+                                    @error="$event.target.src = getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')">
 
                                 <template v-if="apartment.sponsorships.length > 0">
                                     <div class="box">
@@ -122,7 +124,8 @@ export default {
                 <!-- PLACEHOLDER -->
                 <div class="bnb-thumb-wrapper" v-else>
                     <img :src="getMainImagePath(apartment.images)" class="d-block rounded bnb-shadow bnb-apt-thumb"
-                        :alt="'img-' + apartment.slug + '-' + apartment.id">
+                        :alt="'img-' + apartment.slug + '-' + apartment.id"
+                        @error="$event.target.src = getPlaceholderImg('../assets/img/placeholders/placeholder.jpg')">
 
 
                     <!-- SPONSORSHIP RIBBON -->
